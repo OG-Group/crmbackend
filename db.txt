@@ -1,0 +1,289 @@
+create sequence user_id_seq
+    as integer;
+
+alter sequence user_id_seq owner to admin;
+
+create sequence table_name_id_seq
+    as integer;
+
+alter sequence table_name_id_seq owner to admin;
+
+create table role
+(
+    id   serial
+        primary key,
+    name text
+        unique
+);
+
+alter table role
+    owner to admin;
+
+create table userbd
+(
+    id       integer default nextval('user_id_seq'::regclass) not null
+        constraint user_pkey
+            primary key,
+    name     text,
+    login    text
+        constraint user_login_key
+            unique,
+    phone    text
+        constraint user_phone_key
+            unique,
+    password varchar(255)
+);
+
+alter table userbd
+    owner to admin;
+
+alter sequence user_id_seq owned by userbd.id;
+
+create table photo
+(
+    id    integer default nextval('table_name_id_seq'::regclass) not null
+        constraint table_name_pkey
+            primary key,
+    photo text
+        constraint table_name_photo_key
+            unique
+);
+
+alter table photo
+    owner to admin;
+
+alter sequence table_name_id_seq owned by photo.id;
+
+create table user_role
+(
+    id      serial
+        primary key,
+    user_id integer
+        constraint user_role_userbd_id_fk
+            references userbd
+            on update cascade on delete cascade,
+    role_id integer
+        constraint user_role_role_id_fk
+            references role
+            on update cascade on delete cascade
+);
+
+alter table user_role
+    owner to admin;
+
+create table metro
+(
+    id       serial
+        primary key,
+    name     text,
+    type     text,
+    time     integer,
+    "isMain" boolean
+);
+
+alter table metro
+    owner to admin;
+
+create table highway
+(
+    id       serial
+        primary key,
+    "isMain" boolean,
+    distance integer
+);
+
+alter table highway
+    owner to admin;
+
+create table building
+(
+    id                     serial
+        primary key,
+    "cadastrNum"           text,
+    "taxNum"               text,
+    name                   text,
+    "yearOfBuilt"          integer,
+    square                 double precision,
+    "maxFloor"             integer,
+    "roofHigh"             double precision,
+    type                   text,
+    condition              text,
+    "isMebelPresent"       boolean,
+    "lineOfHouses"         text,
+    "isMainUchastok"       boolean,
+    "uchastokSize"         double precision,
+    category               text,
+    developer              text,
+    "masterCompany"        text,
+    ventilation            text,
+    condicioner            text,
+    otoplenie              text,
+    firewall               text,
+    elevators              integer,
+    traveler               integer,
+    excavators             integer,
+    entrance               text,
+    parking                text,
+    "valueParking"         integer,
+    "priceParking"         integer,
+    "isMounthlyPrice"      boolean,
+    price                  double precision,
+    tax                    text,
+    "isComm"               boolean,
+    "isExsplytacion"       boolean,
+    "isArendaStraight"     boolean,
+    "minRent"              text,
+    "isRestForRentPresent" boolean,
+    "obespechitelniiPlat"  integer,
+    "beforePay"            text,
+    "fromStraight"         double precision,
+    "fromAnotheragent"     double precision,
+    phone                  integer
+);
+
+alter table building
+    owner to admin;
+
+create table building_metro
+(
+    id          serial
+        primary key,
+    metro_id    integer
+        constraint building_metro_metro_id_fk
+            references metro
+            on update cascade on delete cascade,
+    building_id integer
+        constraint building_metro_building_id_fk
+            references building
+            on update cascade on delete cascade
+);
+
+alter table building_metro
+    owner to admin;
+
+create table building_highway
+(
+    id          serial
+        primary key,
+    building_id integer
+        constraint building_highway_building_id_fk
+            references building
+            on update cascade on delete cascade,
+    highway_id  integer
+        constraint building_highway_highway_id_fk
+            references highway
+            on update cascade on delete cascade
+);
+
+alter table building_highway
+    owner to admin;
+
+create table building_photo
+(
+    id          serial
+        primary key,
+    building_id integer
+        constraint building_photo_building_id_fk
+            references building
+            on update cascade on delete cascade,
+    photo_id    integer
+        constraint building_photo_photo_id_fk
+            references photo
+            on update cascade on delete cascade
+);
+
+alter table building_photo
+    owner to admin;
+
+create table user_building
+(
+    id          serial
+        primary key,
+    building_id integer
+        constraint user_building_building_id_fk
+            references building
+            on update cascade on delete cascade,
+    user_id     integer
+        constraint user_building_userbd_id_fk
+            references userbd
+            on update cascade on delete cascade
+);
+
+alter table user_building
+    owner to admin;
+
+create table office
+(
+    id                 serial
+        primary key,
+    adr                text,
+    cadast             text,
+    "taxNum"           text,
+    fullsquare         double precision,
+    floor              integer,
+    "maxFloor"         integer,
+    "isUrAdrPresent"   boolean,
+    roofhigh           double precision,
+    "isTaken"          boolean,
+    "freeDateIfTaken"  text,
+    planirovka         text,
+    valueofwetplace    integer,
+    "electricityPower" integer,
+    condition          text,
+    "isPresentMebel"   boolean,
+    dostup             text,
+    parking            text,
+    "valueParking"     integer,
+    "priceParking"     integer,
+    "buildingName"     text,
+    "builtDate"        integer,
+    "typeOfBuild"      text,
+    classofbuilding    text,
+    square             double precision,
+    "uchastokIsMain"   boolean,
+    "uchastokSize"     double precision,
+    categoryofbuilding text,
+    developer          text,
+    "uprCompany"       text,
+    ventilation        text,
+    condicioner        text,
+    otoplenie          text,
+    firewall           text,
+    infrastructure     text,
+    description        text,
+    "priceType"        integer,
+    price              integer,
+    tax                text,
+    "isCom"            boolean,
+    exsplytacion       boolean,
+    "rentType"         text,
+    "minRent"          integer,
+    "isRentHoolidays"  boolean,
+    obespechiteln      integer,
+    "prePay"           text,
+    "fromStraight"     double precision,
+    "fromAnotherAgent" double precision,
+    phone              text
+);
+
+alter table office
+    owner to admin;
+
+create table office_photo
+(
+    id        serial
+        primary key,
+    photo_id  integer
+        constraint office_photo_photo_id_fk
+            references photo
+            on update cascade on delete cascade,
+    office_id integer
+        constraint office_photo_office_id_fk
+            references office
+            on update cascade on delete cascade
+);
+
+alter table office_photo
+    owner to admin;
+
+
