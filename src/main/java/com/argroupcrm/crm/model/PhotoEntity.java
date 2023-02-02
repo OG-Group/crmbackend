@@ -23,7 +23,6 @@ public class PhotoEntity {
     @Id
     @Column(name = "id")
     private Integer id;
-    @Basic
     @Column(name = "photo")
     private String photo;
 

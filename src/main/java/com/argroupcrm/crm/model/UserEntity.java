@@ -22,16 +22,12 @@ public class UserEntity {
     @Id
     @Column(name = "id")
     private Integer id;
-    @Basic
     @Column(name = "name")
     private String name;
-    @Basic
     @Column(name = "login")
     private String login;
-    @Basic
     @Column(name = "phone")
     private String phone;
-    @Basic
     @Column(name = "password")
     private String password;
     @OneToMany(fetch = FetchType.EAGER)
@@ -40,13 +36,10 @@ public class UserEntity {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "building_id"))
     private List<BuildingEntity> userBuilding;
-    @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<RoleEntity> roles;
-
-
 }

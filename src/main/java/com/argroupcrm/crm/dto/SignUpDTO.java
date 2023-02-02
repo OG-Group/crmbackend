@@ -16,6 +16,8 @@ public class SignUpDTO {
     @Pattern(regexp = "^[a-zA-Z0-9]+$")
     private String login;
     @NotBlank
+    private String name;
+    @NotBlank
     @Size(min = 8)
     @Pattern(regexp = "^[a-zA-Z0-9[!@#$%^&*]]+$")
     private String password;
@@ -23,7 +25,6 @@ public class SignUpDTO {
     @NotBlank
     private String email;
     @NotBlank
-    @Pattern(regexp = "/^\\+?\\d{1,4}?[-.\\s]?\\(?\\d{1,3}?\\)?[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,9}$/")
     private String phone;
     @Override
     public String toString() {

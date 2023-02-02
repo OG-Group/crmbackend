@@ -23,16 +23,12 @@ public class MetroEntity {
     @Id
     @Column(name = "id")
     private Integer id;
-    @Basic
     @Column(name = "name")
     private String name;
-    @Basic
     @Column(name = "type")
     private String type;
-    @Basic
     @Column(name = "time")
     private Integer time;
-    @Basic
     @Column(name = "isMainWay")
     private Boolean isMainWay;
 //    @OneToMany(cascade = CascadeType.ALL)

@@ -23,10 +23,8 @@ public class HighwayEntity {
     @Id
     @Column(name = "id")
     private Integer id;
-    @Basic
     @Column(name = "isMainWay")
     private Boolean isMainWay;
-    @Basic
     @Column(name = "distance")
     private Integer distance;
 //    @OneToMany(cascade = CascadeType.ALL)
