@@ -19,7 +19,6 @@ public class JwtProvider {
 
     //@Value(value = "${jwt.secret}")
     private String JWT_SIGN_SECRET = "secret";
-    private String jwtRefreshSecret;
     //@Value(value = "${jwt.expiration}")
     private int jwtExpirationIn = 1;
     public String jwtGenerate(Authentication authentication){

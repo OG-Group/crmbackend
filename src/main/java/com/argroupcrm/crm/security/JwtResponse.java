@@ -11,11 +11,10 @@ public class JwtResponse {
     private String token;
     private String type = "Bearer";
     private String login;
-    private String refreshToken;
 
-    public JwtResponse(String accessToken,String login,String refresh){
+    public JwtResponse(String accessToken,String login){
         this.token = accessToken;
         this.login = login;
-        this.refreshToken = refresh;
+
     }
 }
