@@ -12,22 +12,23 @@ import java.sql.Date;
 import java.time.Instant;
 
 import static java.time.temporal.ChronoUnit.HOURS;
+import static java.time.temporal.ChronoUnit.MINUTES;
 
 @Component
 @Slf4j
 public class JwtProvider {
 
-    //@Value(value = "${jwt.secret}")
-    private String JWT_SIGN_SECRET = "secret";
-    //@Value(value = "${jwt.expiration}")
-    private int jwtExpirationIn = 1;
+    @Value("${jwt.secret}")
+    private String JWT_SIGN_SECRET;
+    @Value("${jwt.expiration}")
+    private int jwtExpirationIn;
     public String jwtGenerate(Authentication authentication){
         log.info("JwtGeneration: ");
         UserDetails user = (UserDetails) authentication.getPrincipal();
         return Jwts.builder()
                 .setSubject(user.getUsername())
                 .setIssuedAt(Date.from(Instant.now()))
-                .setExpiration(Date.from(Instant.now().plus(jwtExpirationIn, HOURS)))
+                .setExpiration(Date.from(Instant.now().plus(jwtExpirationIn, MINUTES)))
                 .signWith(SignatureAlgorithm.HS512, JWT_SIGN_SECRET)
                 .compact();
     }

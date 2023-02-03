@@ -6,11 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Objects;
 
 @Entity
-@Table(name = "role", schema = "public", catalog = "argroupcrm")
+@Table(name = "role")
 @Data
 @Builder
 @NoArgsConstructor

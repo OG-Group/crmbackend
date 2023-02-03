@@ -4,16 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
 
 @Entity
-@Table(name = "metro", schema = "public", catalog = "argroupcrm")
+@Table(name = "metro")
 @Data
 @Builder
 @NoArgsConstructor

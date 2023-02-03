@@ -52,6 +52,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    @Transactional
     public UserEntity findByLogin(String username) {
         return userRepository.findByLogin(username);
     }

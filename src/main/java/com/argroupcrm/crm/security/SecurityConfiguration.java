@@ -27,6 +27,19 @@ import java.util.List;
         jsr250Enabled = true
 )
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+    private static final String[] AUTH_WHITELIST = {
+            "/auth/**",
+            "/v2/api-docs",
+            "/v3/api-docs",
+            "/swagger-resources/**",
+            "/swagger-ui/**",
+            "/",
+            "/common/**",
+            "/files/wopi/**",
+            "/app/**",
+            "/lib/**",
+    };
+
     @Autowired
     private JwtFilter jwtFilter;
 
@@ -39,7 +52,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .anyRequest().permitAll()
+                .antMatchers(AUTH_WHITELIST).permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         http.cors();

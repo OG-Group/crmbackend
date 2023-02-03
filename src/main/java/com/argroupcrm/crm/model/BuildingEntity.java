@@ -4,15 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 import javax.persistence.*;
 import java.util.List;
 
 
 @Entity
-@Table(name = "building", schema = "public", catalog = "argroupcrm")
+@Table(name = "building")
 @Data
 @Builder
 @NoArgsConstructor
@@ -23,13 +20,15 @@ public class BuildingEntity {
     @Id
     @Column(name = "id", nullable = false)
     private Integer id;
+    @Column(name = "adr")
+    private String adr;
     @Column(name = "cadastrNum")
     private String cadastrNum;
     @Column(name = "taxNum")
     private String taxNum;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "nameB")
+    private String nameB;
     @Column(name = "yearOfBuilt")
     private Integer yearOfBuilt;
     @Column(name = "square")
@@ -39,8 +38,8 @@ public class BuildingEntity {
 
     @Column(name = "roofHigh")
     private Double roofHigh;
-    @Column(name = "type")
-    private String type;
+    @Column(name = "typeB")
+    private String typeB;
     @Column(name = "condition")
     private String condition;
     @Column(name = "isMebelPresent")
@@ -51,8 +50,8 @@ public class BuildingEntity {
     private Boolean isMainUchastok;
     @Column(name = "uchastokSize")
     private Double uchastokSize;
-    @Column(name = "category")
-    private String category;
+    @Column(name = "categoryBuilding")
+    private String categoryBuilding;
     @Column(name = "developer")
     private String developer;
     @Column(name = "masterCompany")
