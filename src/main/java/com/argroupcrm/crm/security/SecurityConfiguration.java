@@ -1,6 +1,6 @@
 package com.argroupcrm.crm.security;
 
-import lombok.SneakyThrows;
+import com.argroupcrm.crm.security.jwt.JwtFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
