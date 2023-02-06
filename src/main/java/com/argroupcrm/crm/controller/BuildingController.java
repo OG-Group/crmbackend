@@ -19,21 +19,21 @@ import java.util.List;
 public class BuildingController {
     private final BuildingService buildingService;
 
-    @GetMapping("/all")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER','ROLE_MODERATOR')")
+    @GetMapping("/all")
     public ResponseEntity<List<BuildingEntity>> getAll(){
         log.info("getAll");
         return buildingService.getAll();
     }
 
-    @PostMapping("/add")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER','ROLE_MODERATOR')")
+    @PostMapping("/add")
     public ResponseEntity<BuildingEntity> addBuilding(@RequestBody BuildingEntity buildingEntity){
         log.info("addBuilding");
         return buildingService.addBuilding(buildingEntity);
     }
-    @PostMapping("/update/{id}")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER','ROLE_MODERATOR')")
+    @PostMapping("/update/{id}")
     public ResponseEntity<BuildingEntity> updateBuilding(@PathVariable Integer id,@RequestBody BuildingEntity buildingEntity){
         log.info("updateBuilding");
         return buildingService.updateBuilding(id,buildingEntity);

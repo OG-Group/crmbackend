@@ -5,9 +5,13 @@ import com.argroupcrm.crm.model.RoleEntity;
 import com.argroupcrm.crm.model.UserEntity;
 import com.argroupcrm.crm.repository.RoleEntityRepository;
 import com.argroupcrm.crm.repository.UserEntityRepository;
+import com.argroupcrm.crm.security.UserDetails;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,13 +22,14 @@ import java.util.Set;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
     private final UserEntityRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final RoleEntityRepository roleEntityRepository;
+
     @Override
-    public boolean exist(String login, String email) {
-        return false;
+    public boolean exist(String login) {
+        return userRepository.findByLogin(login) != null;
     }
 
     @Override
@@ -34,11 +39,10 @@ public class UserServiceImpl implements UserService{
         Set<RoleEntity> role = new HashSet<>();
         role.add(roleEntityRepository.findByName("ROLE_USER"));
         UserEntity user = userRepository.findByLogin(signUpDTO.getLogin());
-        if (user != null){
+        if (user != null) {
             log.info("signUp failed 409");
             return ResponseEntity.status(409).build();
-        }
-        else {
+        } else {
             UserEntity newUser = new UserEntity();
             newUser.setLogin(signUpDTO.getLogin());
             newUser.setPassword(passwordEncoder.encode(signUpDTO.getPassword()));
@@ -56,4 +60,24 @@ public class UserServiceImpl implements UserService{
     public UserEntity findByLogin(String username) {
         return userRepository.findByLogin(username);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public UserEntity getCurrent() throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println(auth);
+        if (auth == null) {
+            throw new Exception("UserService.getCurrentUser(): Ошибка получения аутентификационных данных");
+        }
+        Object principal = auth.getPrincipal();
+        String userInfo;
+        System.out.println(principal);
+        if (principal instanceof UserDetails) {
+            userInfo = ((UserDetails) principal).getUsername();
+            return findByLogin(userInfo);
+        } else {
+            throw new Exception("UserService.getCurrentUser(): Ошибка получения данных о пользователе");
+        }
+    }
+
 }
