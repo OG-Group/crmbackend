@@ -1,9 +1,9 @@
 package com.argroupcrm.crm.repository.cian;
 
+import com.argroupcrm.crm.generic.crud.AbstractRepository;
 import com.argroupcrm.crm.model.cian.HighwayCianEntity;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface HighwayCianRepository extends JpaRepository<HighwayCianEntity, Integer> {
+public interface HighwayCianRepository extends AbstractRepository<HighwayCianEntity> {
 }

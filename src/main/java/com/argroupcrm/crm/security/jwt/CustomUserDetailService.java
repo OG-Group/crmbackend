@@ -6,10 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
+import org.springframework.security.core.userdetails.UserDetailsService;
 @Component
-
-public class CustomUserDetailService implements org.springframework.security.core.userdetails.UserDetailsService{
+public class CustomUserDetailService implements UserDetailsService{
     @Autowired
     private UserService userService;
 

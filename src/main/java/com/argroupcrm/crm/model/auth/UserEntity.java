@@ -1,13 +1,12 @@
 package com.argroupcrm.crm.model.auth;
 
-import com.argroupcrm.crm.model.oldtemplate.BuildingEntity;
+import com.argroupcrm.crm.generic.auth.AbstractAuthEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -16,25 +15,11 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "id")
-    private Integer id;
-    @Column(name = "name")
-    private String name;
-    @Column(name = "login")
-    private String login;
+public class UserEntity extends AbstractAuthEntity {
     @Column(name = "phone")
     private String phone;
     @Column(name = "password")
     private String password;
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "user_building",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "building_id"))
-    private List<BuildingEntity> userBuilding;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "user_role",

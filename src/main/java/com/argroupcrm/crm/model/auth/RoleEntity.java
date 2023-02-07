@@ -1,5 +1,6 @@
 package com.argroupcrm.crm.model.auth;
 
+import com.argroupcrm.crm.generic.crud.AbstractEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,11 +14,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RoleEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "id")
-    private Integer id;
+public class RoleEntity extends AbstractEntity {
     @Column(name = "name")
     private String name;
 

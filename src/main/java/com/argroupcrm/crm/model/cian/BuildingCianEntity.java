@@ -1,6 +1,6 @@
 package com.argroupcrm.crm.model.cian;
 
-import com.argroupcrm.crm.model.oldtemplate.MetroEntity;
+import com.argroupcrm.crm.generic.crud.AbstractEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.Objects;
 
 
 @Entity
@@ -18,11 +17,7 @@ import java.util.Objects;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BuildingCianEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "id", nullable = false)
-    private Integer id;
+public class BuildingCianEntity extends AbstractEntity{
     @Column(name = "main_property_type")
     private String mainPropertyType;
     @Column(name = "main_description")
@@ -177,8 +172,8 @@ public class BuildingCianEntity {
     private String btCurrency;
     @Column(name = "bt_payment_period")
     private String btPaymentPeriod;
-    @Column(name = "bt_val_type")
-    private String btValType;
+    @Column(name = "bt_vat_type")
+    private String btVatType;
     @Column(name = "bt_lease_type")
     private String btLeaseType;
     @Column(name = "bt_included_options_enum")
@@ -207,10 +202,16 @@ public class BuildingCianEntity {
     private String btAgentBonusCurrency;
     @Column(name = "created_By")
     private String createdBy;
+    @Column(name = "updated_By")
+    private String updatedBy;
     @Column(name = "create_date")
     private Timestamp createDate;
     @Column(name = "update_date")
     private Timestamp updateDate;
+    @Column(name = "bt_contract_type")
+    private String btContractType;
+    @Column(name = "extinguishing_system_type")
+    private String ExtinguishingSystemType;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "building_office_cian",

@@ -8,6 +8,7 @@ import com.argroupcrm.crm.repository.auth.UserEntityRepository;
 import com.argroupcrm.crm.security.jwt.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -33,7 +34,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public ResponseEntity<UserEntity> signUp(SignUpDTO signUpDTO) {
+    public ResponseEntity<UserEntity> signUp(Object DTO) {
+
+        ModelMapper modelMapper = new ModelMapper();
+        SignUpDTO signUpDTO = new SignUpDTO();
+        modelMapper.map(DTO, signUpDTO);
+
         log.info("signUp");
         Set<RoleEntity> role = new HashSet<>();
         role.add(roleEntityRepository.findByName("ROLE_USER"));

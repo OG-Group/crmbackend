@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 public interface UserService {
     boolean exist(String login);
 
-    ResponseEntity<UserEntity> signUp(SignUpDTO signUpDTO);
+    ResponseEntity<UserEntity> signUp(Object signUpDTO);
 
     UserEntity findByLogin(String username);
 

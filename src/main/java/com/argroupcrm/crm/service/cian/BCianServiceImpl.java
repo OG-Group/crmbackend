@@ -26,6 +26,7 @@ public class BCianServiceImpl implements BCianService {
             }
             buildingCianEntity.setCreateDate(Timestamp.valueOf(java.time.LocalDateTime.now()));
             buildingCianEntity.setUpdateDate(Timestamp.valueOf(java.time.LocalDateTime.now()));
+            buildingCianEntity.setUpdatedBy(userService.getCurrent().getLogin());
             buildingCianEntity.setCreatedBy(userService.getCurrent().getLogin());
             return ResponseEntity.ok(buildingCianRepository.save(buildingCianEntity));
         } catch (Exception e) {

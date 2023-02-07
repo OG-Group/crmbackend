@@ -9,7 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+/*
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/building")
@@ -43,4 +43,4 @@ public class BuildingController {
         log.info("deleteBuilding");
         return buildingService.deleteBuilding(id);
     }
-}
+}*/

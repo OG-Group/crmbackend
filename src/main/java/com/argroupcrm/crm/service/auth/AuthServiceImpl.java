@@ -24,7 +24,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     @Transactional
-    public ResponseEntity<JwtResponse> signIn(LoginDTO loginDTO) {
+    public ResponseEntity<JwtResponse> signIn(LoginDTO loginDTO){
         try {
             String trimmedLoginInLowerCase = loginDTO.getLogin().trim();
             UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(

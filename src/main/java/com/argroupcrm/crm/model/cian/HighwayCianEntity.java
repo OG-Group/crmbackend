@@ -1,12 +1,12 @@
 package com.argroupcrm.crm.model.cian;
 
+import com.argroupcrm.crm.generic.crud.AbstractEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Table(name = "highway_cian")
@@ -14,11 +14,7 @@ import java.util.Objects;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class HighwayCianEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "id")
-    private Long id;
+public class HighwayCianEntity extends AbstractEntity {
     @Column(name = "cityid")
     private Integer cityid;
     @Column(name = "cityname")

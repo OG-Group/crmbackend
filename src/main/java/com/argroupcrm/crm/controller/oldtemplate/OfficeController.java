@@ -9,7 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+/*
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/office")
@@ -42,4 +42,4 @@ public class OfficeController {
         log.info("deleteOffice");
         return officeService.deleteOffice(id);
     }
-}
+}*/

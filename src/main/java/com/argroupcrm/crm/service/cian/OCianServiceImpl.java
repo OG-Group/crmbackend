@@ -27,6 +27,7 @@ public class OCianServiceImpl implements OCianService{
             }
             officeCianEntity.setCreateDate(Timestamp.valueOf(java.time.LocalDateTime.now()));
             officeCianEntity.setUpdateDate(Timestamp.valueOf(java.time.LocalDateTime.now()));
+            officeCianEntity.setUpdatedBy(userService.getCurrent().getLogin());
             officeCianEntity.setCreatedBy(userService.getCurrent().getLogin());
             return ResponseEntity.ok(officeCianRepository.save(officeCianEntity));
         } catch (Exception e) {

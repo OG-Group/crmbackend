@@ -15,6 +15,5 @@ public class JwtResponse {
     public JwtResponse(String accessToken,String login){
         this.token = accessToken;
         this.login = login;
-
     }
 }

@@ -1,5 +1,6 @@
 package com.argroupcrm.crm.model.cian;
 
+import com.argroupcrm.crm.generic.crud.AbstractEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -7,7 +8,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Objects;
 
 @Entity
 @Table(name = "office_cian")
@@ -15,11 +15,7 @@ import java.util.Objects;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OfficeCianEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "id", nullable = false)
-    private Integer id;
+public class OfficeCianEntity extends AbstractEntity {
     @Basic
     @Column(name = "main_property_type")
     private String mainPropertyType;
@@ -270,8 +266,8 @@ public class OfficeCianEntity {
     @Column(name = "bt_payment_period")
     private String btPaymentPeriod;
     @Basic
-    @Column(name = "bt_val_type")
-    private String btValType;
+    @Column(name = "bt_vat_type")
+    private String btVatType;
     @Basic
     @Column(name = "bt_lease_type")
     private String btLeaseType;
@@ -314,6 +310,8 @@ public class OfficeCianEntity {
     @Basic
     @Column(name = "created_By")
     private String createdBy;
+    @Column(name = "updated_By")
+    private String updatedBy;
     @Column(name = "create_date")
     private Timestamp createDate;
     @Column(name = "update_date")
