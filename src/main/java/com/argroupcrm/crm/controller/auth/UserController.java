@@ -1,5 +1,7 @@
 package com.argroupcrm.crm.controller.auth;
 
+import com.argroupcrm.crm.generic.crud.AbstractControllerImpl;
+import com.argroupcrm.crm.generic.crud.AbstractService;
 import com.argroupcrm.crm.model.auth.UserEntity;
 import com.argroupcrm.crm.service.auth.UserService;
 import lombok.RequiredArgsConstructor;
@@ -13,10 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/user")
-@RequiredArgsConstructor
+
 @Slf4j
-public class UserController {
+public class UserController extends AbstractControllerImpl<UserEntity, UserService> {
     private final UserService userService;
+
+    public UserController(AbstractService<UserEntity> userService) {
+        super(userService);
+        this.userService = (UserService) userService;
+    }
 
     @GetMapping("/")
     public ResponseEntity<UserEntity> getUser() {

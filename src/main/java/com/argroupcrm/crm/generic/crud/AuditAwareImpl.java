@@ -1,18 +1,23 @@
 package com.argroupcrm.crm.generic.crud;
 
+import com.argroupcrm.crm.service.auth.UserServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
-//TODO: implement
-@Component
+@Component("auditorAware")
+@RequiredArgsConstructor
 public class AuditAwareImpl implements AuditorAware<String> {
-
+    private final UserServiceImpl userService;
     @Override
     public Optional<String> getCurrentAuditor() {
-     //    UserDetails = (ApplicationUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        //return Optional.of(principal.getId());
-        return null;
+        try {
+            System.out.println("user login: " + userService.getCurrent().getLogin());
+            return Optional.of(userService.getCurrent().getLogin());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 

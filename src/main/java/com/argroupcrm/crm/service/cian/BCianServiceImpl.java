@@ -5,6 +5,8 @@ import com.argroupcrm.crm.repository.cian.BuildingCianRepository;
 import com.argroupcrm.crm.service.auth.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -24,14 +26,40 @@ public class BCianServiceImpl implements BCianService {
             if(buildingCianRepository.existsById(buildingCianEntity.getId())){
                 return ResponseEntity.status(409).build();
             }
-            buildingCianEntity.setCreateDate(Timestamp.valueOf(java.time.LocalDateTime.now()));
-            buildingCianEntity.setUpdateDate(Timestamp.valueOf(java.time.LocalDateTime.now()));
-            buildingCianEntity.setUpdatedBy(userService.getCurrent().getLogin());
-            buildingCianEntity.setCreatedBy(userService.getCurrent().getLogin());
+
+//            buildingCianEntity.setCreateDate(Timestamp.valueOf(java.time.LocalDateTime.now()));
+//            buildingCianEntity.setUpdateDate(Timestamp.valueOf(java.time.LocalDateTime.now()));
+//            buildingCianEntity.setUpdatedBy(userService.getCurrent().getLogin());
+//            buildingCianEntity.setCreatedBy(userService.getCurrent().getLogin());
             return ResponseEntity.ok(buildingCianRepository.save(buildingCianEntity));
         } catch (Exception e) {
             log.error("addCian error ", e);
             return ResponseEntity.badRequest().build();
         }
+    }
+
+    @Override
+    public BuildingCianEntity save(BuildingCianEntity entity) {
+        return create(entity).getBody();
+    }
+
+    @Override
+    public BuildingCianEntity update(BuildingCianEntity entity) {
+        return null;
+    }
+
+    @Override
+    public void delete(Long id) {
+
+    }
+
+    @Override
+    public BuildingCianEntity findById(Long id) {
+        return null;
+    }
+
+    @Override
+    public Page<BuildingCianEntity> findAll(Pageable pageable) {
+        return null;
     }
 }

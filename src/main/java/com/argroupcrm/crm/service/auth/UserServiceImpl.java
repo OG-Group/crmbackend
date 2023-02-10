@@ -9,6 +9,8 @@ import com.argroupcrm.crm.security.jwt.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -34,12 +36,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public ResponseEntity<UserEntity> signUp(Object DTO) {
-
-        ModelMapper modelMapper = new ModelMapper();
-        SignUpDTO signUpDTO = new SignUpDTO();
-        modelMapper.map(DTO, signUpDTO);
-
+    public ResponseEntity<UserEntity> signUp(SignUpDTO signUpDTO) {
         log.info("signUp");
         Set<RoleEntity> role = new HashSet<>();
         role.add(roleEntityRepository.findByName("ROLE_USER"));
@@ -83,6 +80,34 @@ public class UserServiceImpl implements UserService {
         } else {
             throw new Exception("UserService.getCurrentUser(): Ошибка получения данных о пользователе");
         }
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public UserEntity findById(Long id) {
+        return userRepository.findById(id).orElseThrow();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<UserEntity> findAll(Pageable pageable) {
+        return userRepository.findAll(pageable);
+    }
+
+
+    @Override
+    public UserEntity save(UserEntity entity) {
+        return null;
+    }
+
+    @Override
+    public UserEntity update(UserEntity entity) {
+        return null;
+    }
+
+    @Override
+    public void delete(Long id) {
+
     }
 
 }

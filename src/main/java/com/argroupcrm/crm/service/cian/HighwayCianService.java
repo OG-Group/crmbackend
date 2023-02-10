@@ -1,4 +1,7 @@
 package com.argroupcrm.crm.service.cian;
 
-public interface HighwayCianService {
+import com.argroupcrm.crm.generic.crud.AbstractService;
+import com.argroupcrm.crm.model.cian.HighwayCianEntity;
+
+public interface HighwayCianService extends AbstractService<HighwayCianEntity> {
 }

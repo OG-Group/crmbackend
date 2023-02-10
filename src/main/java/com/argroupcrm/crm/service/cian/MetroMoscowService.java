@@ -1,4 +1,7 @@
 package com.argroupcrm.crm.service.cian;
 
-public interface MetroMoscowService {
+import com.argroupcrm.crm.generic.crud.AbstractService;
+import com.argroupcrm.crm.model.cian.MetroMoscowEntity;
+
+public interface MetroMoscowService extends AbstractService<MetroMoscowEntity> {
 }

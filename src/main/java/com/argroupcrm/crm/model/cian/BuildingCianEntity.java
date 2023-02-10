@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.util.List;
 
 
@@ -112,102 +111,6 @@ public class BuildingCianEntity extends AbstractEntity{
     private Integer taxNumber;
     @Column(name = "isIn_hidden_base")
     private Boolean isInHiddenBase;
-    @Column(name = "b_name")
-    private String bName;
-    @Column(name = "b_floors_count")
-    private Integer bFloorsCount;
-    @Column(name = "b_total_area")
-    private Double bTotalArea;
-    @Column(name = "b_heating_type")
-    private String bHeatingType;
-    @Column(name = "b_ceiling_height")
-    private Double bCeilingHeight;
-    @Column(name = "b_parking_type")
-    private String bParkingType;
-    @Column(name = "b_parking_places_count")
-    private Integer bParkingPlacesCount;
-    @Column(name = "b_parking_price_monthly")
-    private Double bParkingPriceMonthly;
-    @Column(name = "b_parking_is_free")
-    private Boolean bParkingIsFree;
-    @Column(name = "b_type")
-    private String bType;
-    @Column(name = "b_house_line")
-    private String bHouseLine;
-    @Column(name = "b_class_type")
-    private String bClassType;
-    @Column(name = "b_developer")
-    private String bDeveloper;
-    @Column(name = "b_management_company")
-    private String bManagementCompany;
-    @Column(name = "b_ventilation_type")
-    private String bVentilationType;
-    @Column(name = "b_conditioning_type")
-    private String bConditioningType;
-    @Column(name = "b_extinguishing_system_type_enum")
-    private String bExtinguishingSystemTypeEnum;
-    @Column(name = "b_lift_type")
-    private String bLiftType;
-    @Column(name = "b_lift_additional_type")
-    private String bLiftAdditionalType;
-    @Column(name = "b_lift_count")
-    private Integer bLiftCount;
-    @Column(name = "b_status_type")
-    private String bStatusType;
-    @Column(name = "land_area")
-    private Double landArea;
-    @Column(name = "land_area_unit_type")
-    private String landAreaUnitType;
-    @Column(name = "land_type")
-    private String landType;
-    @Column(name = "area_parts_rent_by_parts_schema_area")
-    private Double areaPartsRentByPartsSchemaArea;
-    @Column(name = "area_parts_rent_by_parts_schema_price")
-    private Double areaPartsRentByPartsSchemaPrice;
-    @Column(name = "bt_price")
-    private Double btPrice;
-    @Column(name = "bt_price_type")
-    private String btPriceType;
-    @Column(name = "bt_currency")
-    private String btCurrency;
-    @Column(name = "bt_payment_period")
-    private String btPaymentPeriod;
-    @Column(name = "bt_vat_type")
-    private String btVatType;
-    @Column(name = "bt_lease_type")
-    private String btLeaseType;
-    @Column(name = "bt_included_options_enum")
-    private String btIncludedOptionsEnum;
-    @Column(name = "bt_lease_term_type")
-    private String btLeaseTermType;
-    @Column(name = "bt_min_lease_term")
-    private Integer btMinLeaseTerm;
-    @Column(name = "bt_prepay_mounths")
-    private Integer btPrepayMounths;
-    @Column(name = "bt_has_grace_period")
-    private Boolean btHasGracePeriod;
-    @Column(name = "bt_deposit")
-    private Integer btDeposit;
-    @Column(name = "bt_client_fee")
-    private Integer btClientFee;
-    @Column(name = "bt_security_deposit")
-    private Integer btSecurityDeposit;
-    @Column(name = "bt_agent_fee")
-    private Integer btAgentFee;
-    @Column(name = "bt_agent_bonus_value")
-    private Double btAgentBonusValue;
-    @Column(name = "bt_agent_bonus_payment_type")
-    private String btAgentBonusPaymentType;
-    @Column(name = "bt_agent_bonus_currency")
-    private String btAgentBonusCurrency;
-    @Column(name = "created_By")
-    private String createdBy;
-    @Column(name = "updated_By")
-    private String updatedBy;
-    @Column(name = "create_date")
-    private Timestamp createDate;
-    @Column(name = "update_date")
-    private Timestamp updateDate;
     @Column(name = "bt_contract_type")
     private String btContractType;
     @Column(name = "extinguishing_system_type")

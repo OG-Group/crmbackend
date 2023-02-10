@@ -14,17 +14,22 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger.web.*;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * Created by ogbozoyan at 13.01.2023
+ * github.com/ogbozoyan
+ */
 @Configuration
 @EnableSwagger2
 @ConfigurationProperties("app.api")
 @ConditionalOnProperty(name = "app.api.swagger.enabled", havingValue = "true")
 @Data
 public class SwaggerConfiguration {
+
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("CRM AR Group")
-                .description("Сервисы backend CRM AR Group")
-                .licenseUrl("")
+                .title("Тут название")
+                .description("Тут описание")
+                .licenseUrl("http://unlicense.org")
                 .termsOfServiceUrl("")
                 .version("1.0.0")
                 .build();
@@ -34,7 +39,7 @@ public class SwaggerConfiguration {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.argroupcrm.crm.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.example.inpp_business_logic"))
                 .paths(PathSelectors.any())
                 .build();
     }
@@ -61,4 +66,3 @@ public class SwaggerConfiguration {
     }
 
 }
-
