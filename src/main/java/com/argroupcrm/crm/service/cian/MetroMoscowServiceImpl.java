@@ -1,10 +1,12 @@
 package com.argroupcrm.crm.service.cian;
 
+import com.argroupcrm.crm.generic.dto.response.CreateResponseDTO;
 import com.argroupcrm.crm.model.cian.MetroMoscowEntity;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,7 +14,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class MetroMoscowServiceImpl implements MetroMoscowService{
     @Override
-    public MetroMoscowEntity save(MetroMoscowEntity entity) {
+    public ResponseEntity<CreateResponseDTO> save(MetroMoscowEntity entity) {
         return null;
     }
 

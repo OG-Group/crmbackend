@@ -1,6 +1,7 @@
 package com.argroupcrm.crm.service.auth;
 
 import com.argroupcrm.crm.dto.auth.SignUpDTO;
+import com.argroupcrm.crm.generic.dto.response.CreateResponseDTO;
 import com.argroupcrm.crm.model.auth.RoleEntity;
 import com.argroupcrm.crm.model.auth.UserEntity;
 import com.argroupcrm.crm.repository.auth.RoleEntityRepository;
@@ -8,7 +9,6 @@ import com.argroupcrm.crm.repository.auth.UserEntityRepository;
 import com.argroupcrm.crm.security.jwt.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -96,7 +96,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public UserEntity save(UserEntity entity) {
+    public ResponseEntity<CreateResponseDTO> save(UserEntity entity) {
         return null;
     }
 

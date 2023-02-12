@@ -1,5 +1,6 @@
 package com.argroupcrm.crm.generic.crud;
 
+import com.argroupcrm.crm.generic.dto.response.CreateResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,7 +19,7 @@ public abstract class AbstractControllerImpl<E extends AbstractEntity, S extends
     static final String EnumRoles = "ROLE_ADMIN, ROLE_USER, ROLE_MODERATOR";
     @Override
     @PreAuthorize("hasAnyRole(EnumRoles)")
-    public ResponseEntity<Page<E>> getPage(Pageable pageable) {
+    public ResponseEntity<Page<E>> getPage(@RequestBody Pageable pageable) {
         return ResponseEntity.ok(service.findAll(pageable));
     }
     @Override
@@ -40,8 +41,8 @@ public abstract class AbstractControllerImpl<E extends AbstractEntity, S extends
 
     @Override
     @PreAuthorize("hasAnyRole(EnumRoles)")
-    public ResponseEntity<E> create(@RequestBody E create) {
-        return ResponseEntity.ok(service.save(create));
+    public ResponseEntity<CreateResponseDTO> create(@RequestBody E create) {
+        return ResponseEntity.ok(service.save(create).getBody());
     }
 
     @Override

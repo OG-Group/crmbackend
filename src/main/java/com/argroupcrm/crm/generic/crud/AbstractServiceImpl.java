@@ -1,9 +1,11 @@
 package com.argroupcrm.crm.generic.crud;
 
+import com.argroupcrm.crm.generic.dto.response.CreateResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
@@ -14,9 +16,9 @@ public abstract class AbstractServiceImpl<T extends AbstractEntity, R extends Ab
 
     @Override
     @Transactional
-    public T save(T entity) {
+    public ResponseEntity<CreateResponseDTO> save(T entity) {
         try {
-            return repository.save(entity);
+            return ResponseEntity.ok(new CreateResponseDTO(repository.save(entity).getId(),"success"));
         } catch (Exception e) {
             e.printStackTrace();
             throw e;

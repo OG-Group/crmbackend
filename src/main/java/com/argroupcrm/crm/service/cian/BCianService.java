@@ -5,5 +5,4 @@ import com.argroupcrm.crm.model.cian.BuildingCianEntity;
 import org.springframework.http.ResponseEntity;
 
 public interface BCianService extends AbstractService<BuildingCianEntity> {
-    ResponseEntity<BuildingCianEntity> create(BuildingCianEntity buildingCianEntity);
 }

@@ -1,5 +1,6 @@
 package com.argroupcrm.crm.generic.crud;
 
+import com.argroupcrm.crm.generic.dto.response.CreateResponseDTO;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,7 +14,7 @@ public interface AbstractController<T extends  AbstractEntity>{
     @ApiOperation(value = "Получить постранично")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping
-    ResponseEntity<Page<T>> getPage(Pageable pageable);
+    ResponseEntity<Page<T>> getPage(@RequestBody Pageable pageable);
     @ApiOperation(value = "Получить постранично с сортировкой по полю")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/sort")
@@ -21,15 +22,15 @@ public interface AbstractController<T extends  AbstractEntity>{
     @ApiOperation(value = "Получить по id")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("{id}")
-    ResponseEntity<T> getOne(@PathVariable Long id);
+    ResponseEntity<?> getOne(@PathVariable Long id);
     @ApiOperation(value = "Обновить данные")
     @ResponseStatus(HttpStatus.OK)
     @PatchMapping
-    ResponseEntity<T> update(@RequestBody T update);
+    ResponseEntity<?> update(@RequestBody T update);
     @ApiOperation(value = "Создать сущность")
     @ResponseStatus(HttpStatus.OK)
     @PostMapping
-    ResponseEntity<T> create(@RequestBody T create);
+    ResponseEntity<CreateResponseDTO> create(@RequestBody T create);
     @ApiOperation(value = "Удалить сущность по id")
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("{id}")
