@@ -3,12 +3,17 @@ package com.argroupcrm.crm.security.jwt;
 import com.argroupcrm.crm.model.auth.UserEntity;
 import com.argroupcrm.crm.service.auth.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.security.core.userdetails.UserDetailsService;
+
+/**
+ * @author ogbozoyan
+ * @date 12.02.2023
+ */
 @Component
-public class CustomUserDetailService implements UserDetailsService{
+public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private UserService userService;
 

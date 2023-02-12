@@ -1,5 +1,9 @@
 package com.argroupcrm.crm.security.jwt;
 
+import com.argroupcrm.crm.security.jwt.CustomUserDetails;
+import com.argroupcrm.crm.security.jwt.CustomUserDetailsService;
+import com.argroupcrm.crm.security.jwt.JwtProvider;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,6 +20,11 @@ import java.io.IOException;
 
 import static io.jsonwebtoken.lang.Strings.hasText;
 
+
+/**
+ * Created by ogbozoyan at 16.01.2023
+ * github.com/ogbozoyan
+ */
 @Component
 public class JwtFilter extends OncePerRequestFilter {
     public static final String AUTHORIZATION = "Authorization";
@@ -24,7 +33,7 @@ public class JwtFilter extends OncePerRequestFilter {
     private JwtProvider jwtProvider;
 
     @Autowired
-    private CustomUserDetailService userDetailsService;
+    private CustomUserDetailsService userDetailsService;
     private String getToken(HttpServletRequest request) {
         String bearer = request.getHeader(AUTHORIZATION);
         if (hasText(bearer) && bearer.startsWith("Bearer ")) {

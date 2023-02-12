@@ -14,7 +14,11 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RoleEntity extends AbstractEntity {
+public class RoleEntity {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "id")
+    private Long id;
     @Column(name = "name")
     private String name;
 

@@ -13,8 +13,8 @@ import java.io.IOException;
  * @author ogbozoyan
  * @date 12.02.2023
  */
-@Converter(autoApply = true)
 @Data
+@Converter(autoApply = false)
 public class JpaConverterJson implements AttributeConverter<Object, String>{
 
     private final static ObjectMapper objectMapper = new ObjectMapper();

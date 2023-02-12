@@ -1,12 +1,12 @@
 package com.argroupcrm.crm.model.auth;
 
-import com.argroupcrm.crm.generic.auth.AbstractAuthEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -15,7 +15,15 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserEntity extends AbstractAuthEntity {
+public class UserEntity {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "id")
+    private Long id;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "login")
+    private String login;
     @Column(name = "phone")
     private String phone;
     @Column(name = "password")

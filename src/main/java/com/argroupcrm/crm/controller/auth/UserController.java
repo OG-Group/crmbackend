@@ -11,19 +11,13 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/user")
-
+@RequiredArgsConstructor
 @Slf4j
-public class UserController extends AbstractControllerImpl<UserEntity, UserService> {
+public class UserController {
     private final UserService userService;
-
-    public UserController(AbstractService<UserEntity> userService) {
-        super(userService);
-        this.userService = (UserService) userService;
-    }
 
     @GetMapping("/")
     public ResponseEntity<UserEntity> getUser() {

@@ -1,7 +1,6 @@
 package com.argroupcrm.crm.service.auth;
 
 import com.argroupcrm.crm.dto.auth.SignUpDTO;
-import com.argroupcrm.crm.generic.dto.response.CreateResponseDTO;
 import com.argroupcrm.crm.model.auth.RoleEntity;
 import com.argroupcrm.crm.model.auth.UserEntity;
 import com.argroupcrm.crm.repository.auth.RoleEntityRepository;
@@ -9,8 +8,6 @@ import com.argroupcrm.crm.repository.auth.UserEntityRepository;
 import com.argroupcrm.crm.security.jwt.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -39,6 +37,8 @@ public class UserServiceImpl implements UserService {
     public ResponseEntity<UserEntity> signUp(SignUpDTO signUpDTO) {
         log.info("signUp");
         Set<RoleEntity> role = new HashSet<>();
+        List<RoleEntity> roles = roleEntityRepository.findAll();
+        System.out.println();
         role.add(roleEntityRepository.findByName("ROLE_USER"));
         UserEntity user = userRepository.findByLogin(signUpDTO.getLogin());
         if (user != null) {
@@ -81,33 +81,4 @@ public class UserServiceImpl implements UserService {
             throw new Exception("UserService.getCurrentUser(): Ошибка получения данных о пользователе");
         }
     }
-
-    @Override
-    @Transactional(readOnly = true)
-    public UserEntity findById(Long id) {
-        return userRepository.findById(id).orElseThrow();
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public Page<UserEntity> findAll(Pageable pageable) {
-        return userRepository.findAll(pageable);
-    }
-
-
-    @Override
-    public ResponseEntity<CreateResponseDTO> save(UserEntity entity) {
-        return null;
-    }
-
-    @Override
-    public UserEntity update(UserEntity entity) {
-        return null;
-    }
-
-    @Override
-    public void delete(Long id) {
-
-    }
-
 }

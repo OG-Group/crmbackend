@@ -6,7 +6,7 @@ import com.argroupcrm.crm.generic.crud.AbstractService;
 import com.argroupcrm.crm.model.auth.UserEntity;
 import org.springframework.http.ResponseEntity;
 
-public interface UserService extends AbstractService<UserEntity> {
+public interface UserService {
     boolean exist(String login);
 
     ResponseEntity<UserEntity> signUp(SignUpDTO signUpDTO);
@@ -14,6 +14,4 @@ public interface UserService extends AbstractService<UserEntity> {
     UserEntity findByLogin(String username);
 
     UserEntity getCurrent() throws Exception;
-    @Override
-    ResponseEntity<CreateResponseDTO> save(UserEntity entity);
 }

@@ -2,16 +2,24 @@ package com.argroupcrm.crm.security.jwt;
 
 import com.argroupcrm.crm.model.auth.UserEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 import java.io.Serial;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * @author ogbozoyan
+ * @date 12.02.2023
+ */
 @Data
 @Builder
 @NoArgsConstructor
