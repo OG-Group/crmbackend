@@ -37,7 +37,7 @@ public class OfficeCianController implements AbstractController<OfficeCianEntity
 
     @Override
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER','ROLE_MODERATOR')")
-    public ResponseEntity<Page<OfficeCianEntity>> getPage(@RequestBody Pageable pageable) {
+    public ResponseEntity<Page<OfficeCianEntity>> getPage( Pageable pageable) {
         try {
             log.info("getPage office");
             return ResponseEntity.ok(oCianService.findAll(pageable));

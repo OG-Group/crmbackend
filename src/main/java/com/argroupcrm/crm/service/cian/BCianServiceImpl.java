@@ -26,8 +26,7 @@ public class BCianServiceImpl implements BCianService {
             if(buildingCianRepository.existsById(buildingCianEntity.getId())){
                 return ResponseEntity.status(409).build();
             }
-            BuildingCianEntity newB =  buildingCianRepository.save(buildingCianEntity);
-            return ResponseEntity.ok(new CreateResponseDTO(newB.getId(), "success"));
+            return ResponseEntity.ok(new CreateResponseDTO(buildingCianRepository.save(buildingCianEntity).getId(), "success"));
         } catch (Exception e) {
             log.error("addCian error ", e);
             return ResponseEntity.badRequest().build();
@@ -63,14 +62,14 @@ public class BCianServiceImpl implements BCianService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public BuildingCianEntity findById(Long id) {
         log.info("find building by id");
         return buildingCianRepository.findById(id).orElseThrow();
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Page<BuildingCianEntity> findAll(Pageable pageable) {
         log.info("find building pageable");
         return buildingCianRepository.findAll(pageable);

@@ -14,7 +14,7 @@ public interface AbstractController<T extends  AbstractEntity>{
     @ApiOperation(value = "Получить постранично")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping
-    ResponseEntity<Page<T>> getPage(@RequestBody Pageable pageable);
+    ResponseEntity<Page<T>> getPage(Pageable pageable);
     @ApiOperation(value = "Получить постранично с сортировкой по полю")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/sort")

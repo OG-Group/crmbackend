@@ -27,8 +27,7 @@ public class OCianServiceImpl implements OCianService {
             if (officeCianRepository.existsById(officeCianEntity.getId())) {
                 return ResponseEntity.status(409).build();
             }
-            officeCianRepository.save(officeCianEntity);
-            return ResponseEntity.ok(new CreateResponseDTO(officeCianEntity.getId(), "success"));
+            return ResponseEntity.ok(new CreateResponseDTO(officeCianRepository.save(officeCianEntity).getId(), "success"));
         } catch (Exception e) {
             log.error("addCian error ", e);
             return ResponseEntity.badRequest().build();
@@ -36,6 +35,7 @@ public class OCianServiceImpl implements OCianService {
     }
 
     @Override
+    @Transactional
     public OfficeCianEntity update(OfficeCianEntity officeCianEntity) {
         try {
             log.info("update building");
@@ -50,6 +50,7 @@ public class OCianServiceImpl implements OCianService {
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
         try {
             log.info("delete building");
@@ -62,6 +63,7 @@ public class OCianServiceImpl implements OCianService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public OfficeCianEntity findById(Long id) {
         try {
             log.info("find by id");
@@ -74,6 +76,7 @@ public class OCianServiceImpl implements OCianService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Page<OfficeCianEntity> findAll(Pageable pageable) {
         try {
             log.info("find all");

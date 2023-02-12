@@ -212,13 +212,13 @@ public class BuildingCianEntity extends AbstractEntity {
     private String bargainTermsAgentBonusCurrency;
 
     /*=================Linked Office info=================================================================================*/
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "building_office_cian",
-            foreignKey = @ForeignKey(name = "FK_building_office_cian_office"),
-            joinColumns = @JoinColumn(name = "building_id", referencedColumnName = "ID"),
-            inverseForeignKey = @ForeignKey(name = "FK_building_office_cian_building"),
-            inverseJoinColumns = @JoinColumn(name = "office_id", referencedColumnName = "ID")
-    )
-    private List<OfficeCianEntity> officeEntity;
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinTable(
+//            name = "building_office_cian",
+//            foreignKey = @ForeignKey(name = "FK_building_office_cian_office"),
+//            joinColumns = @JoinColumn(name = "building_id", referencedColumnName = "ID"),
+//            inverseForeignKey = @ForeignKey(name = "FK_building_office_cian_building"),
+//            inverseJoinColumns = @JoinColumn(name = "office_id", referencedColumnName = "ID")
+//    )
+//    private List<OfficeCianEntity> officeEntity;
 }

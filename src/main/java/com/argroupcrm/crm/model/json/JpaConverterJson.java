@@ -3,7 +3,6 @@ package com.argroupcrm.crm.model.json;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
-import org.hibernate.boot.model.JavaTypeDescriptor;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
@@ -14,7 +13,7 @@ import java.io.IOException;
  * @date 12.02.2023
  */
 @Data
-@Converter(autoApply = false)
+@Converter
 public class JpaConverterJson implements AttributeConverter<Object, String>{
 
     private final static ObjectMapper objectMapper = new ObjectMapper();
@@ -22,6 +21,10 @@ public class JpaConverterJson implements AttributeConverter<Object, String>{
     @Override
     public String convertToDatabaseColumn(Object meta) {
         try {
+            if(meta == null)
+            {
+                return null;
+            }
             return objectMapper.writeValueAsString(meta);
         } catch (JsonProcessingException ex) {
             throw new RuntimeException(ex);
@@ -31,6 +34,10 @@ public class JpaConverterJson implements AttributeConverter<Object, String>{
     @Override
     public Object convertToEntityAttribute(String dbData) {
         try {
+            if(dbData == null)
+            {
+                return null;
+            }
             return objectMapper.readValue(dbData, Object.class);
         } catch (IOException ex) {
             throw new RuntimeException(ex);

@@ -4,6 +4,7 @@ import com.argroupcrm.crm.generic.crud.AbstractController;
 import com.argroupcrm.crm.generic.dto.response.CreateResponseDTO;
 import com.argroupcrm.crm.model.cian.BuildingCianEntity;
 import com.argroupcrm.crm.service.cian.BCianService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -22,19 +23,20 @@ import org.springframework.web.bind.annotation.*;
 public class BuildingCianController implements AbstractController<BuildingCianEntity> {
     private final BCianService bCianService;
     @Override
+    @ApiOperation(value = "Обновить данные/ officeEntity должно быть пустым, лучше вообще удалить это поле")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER','ROLE_MODERATOR')")
-    public ResponseEntity<CreateResponseDTO> create(@RequestBody BuildingCianEntity create) {
+    public ResponseEntity<CreateResponseDTO> create(@RequestBody BuildingCianEntity buildingCianEntity) {
+        log.info("addCian building");
         try {
-            log.info("create building");
-            return bCianService.save(create);
+            return bCianService.save(buildingCianEntity);
         } catch (Exception e) {
-            log.error("create error ", e);
+            log.error("addCian building error ", e);
             return ResponseEntity.badRequest().build();
         }
     }
     @Override
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER','ROLE_MODERATOR')")
-    public ResponseEntity<Page<BuildingCianEntity>> getPage(@RequestBody Pageable pageable) {
+    public ResponseEntity<Page<BuildingCianEntity>> getPage( Pageable pageable) {
         try {
             log.info("getPage building");
             return ResponseEntity.ok(bCianService.findAll(pageable));

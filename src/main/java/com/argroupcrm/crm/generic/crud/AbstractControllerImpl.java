@@ -7,7 +7,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,37 +15,30 @@ import org.springframework.web.bind.annotation.RequestParam;
 public abstract class AbstractControllerImpl<E extends AbstractEntity, S extends AbstractService<E>>
         implements AbstractController<E> {
     private final AbstractService<E> service;
-    static final String EnumRoles = "ROLE_ADMIN, ROLE_USER, ROLE_MODERATOR";
     @Override
-    @PreAuthorize("hasAnyRole(EnumRoles)")
-    public ResponseEntity<Page<E>> getPage(@RequestBody Pageable pageable) {
+    public ResponseEntity<Page<E>> getPage(Pageable pageable) {
         return ResponseEntity.ok(service.findAll(pageable));
     }
     @Override
-    @PreAuthorize("hasAnyRole(EnumRoles)")
     public ResponseEntity<E> getOne(@PathVariable Long id) {
         return ResponseEntity.ok(service.findById(id));
     }
     @Override
-    @PreAuthorize("hasAnyRole(EnumRoles)")
     public ResponseEntity<Page<E>> getPageAndSort(@RequestParam int page, @RequestParam int size, @RequestParam String sort){
         return ResponseEntity.ok(service.findAll(PageRequest.of(page, size, Sort.by(sort))));
     }
 
     @Override
-    @PreAuthorize("hasAnyRole(EnumRoles)")
     public ResponseEntity<E> update(@RequestBody E update) {
         return ResponseEntity.ok(service.update(update));
     }
 
     @Override
-    @PreAuthorize("hasAnyRole(EnumRoles)")
     public ResponseEntity<CreateResponseDTO> create(@RequestBody E create) {
         return ResponseEntity.ok(service.save(create).getBody());
     }
 
     @Override
-    @PreAuthorize("hasAnyRole(EnumRoles)")
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }
