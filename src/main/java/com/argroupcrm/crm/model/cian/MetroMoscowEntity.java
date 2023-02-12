@@ -15,7 +15,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MetroMoscowEntity extends AbstractEntity {
-
     @Basic
     @Column(name = "id_station")
     private Integer idStation;
