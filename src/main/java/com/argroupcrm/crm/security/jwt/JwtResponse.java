@@ -1,0 +1,23 @@
+package com.argroupcrm.crm.security.jwt;
+
+import lombok.Data;
+import org.springframework.stereotype.Component;
+
+/**
+ * Created by ogbozoyan at 14.01.2023
+ * github.com/ogbozoyan
+ */
+@Component
+@Data
+public class JwtResponse {
+    private String tokenType = "Bearer";
+    private String login;
+    private String accessToken;
+
+    public JwtResponse() {
+    }
+    public JwtResponse(String accessToken,String login) {
+        this.accessToken = accessToken;
+        this.login = login;
+    }
+}
