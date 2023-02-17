@@ -1,4 +1,4 @@
-package com.argroupcrm.crm.generic.dto.response;
+package com.argroupcrm.crm.generic.crud.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

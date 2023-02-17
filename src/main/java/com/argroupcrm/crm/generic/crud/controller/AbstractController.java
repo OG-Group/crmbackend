@@ -1,6 +1,7 @@
-package com.argroupcrm.crm.generic.crud;
+package com.argroupcrm.crm.generic.crud.controller;
 
-import com.argroupcrm.crm.generic.dto.response.CreateResponseDTO;
+import com.argroupcrm.crm.generic.crud.model.AbstractEntity;
+import com.argroupcrm.crm.generic.crud.dto.CreateResponseDTO;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-public interface AbstractController<T extends  AbstractEntity>{
+public interface AbstractController<T extends AbstractEntity>{
 
     @ApiOperation(value = "Получить постранично")
     @ResponseStatus(HttpStatus.OK)

@@ -1,4 +1,4 @@
-package com.argroupcrm.crm.generic.crud;
+package com.argroupcrm.crm.generic.crud.model;
 
 
 import lombok.AllArgsConstructor;

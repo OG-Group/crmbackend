@@ -1,6 +1,10 @@
 package com.argroupcrm.crm.service.cian;
 
-import com.argroupcrm.crm.generic.dto.response.CreateResponseDTO;
+import com.argroupcrm.crm.controller.advice.DeleteException;
+import com.argroupcrm.crm.controller.advice.FindException;
+import com.argroupcrm.crm.controller.advice.SaveException;
+import com.argroupcrm.crm.controller.advice.UpdateException;
+import com.argroupcrm.crm.generic.crud.dto.CreateResponseDTO;
 import com.argroupcrm.crm.model.cian.OfficeCianEntity;
 import com.argroupcrm.crm.repository.cian.OfficeCianRepository;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +34,7 @@ public class OCianServiceImpl implements OCianService {
             return ResponseEntity.ok(new CreateResponseDTO(officeCianRepository.save(officeCianEntity).getId(), "success"));
         } catch (Exception e) {
             log.error("addCian error ", e);
-            return ResponseEntity.badRequest().build();
+            throw new SaveException("Save Office Cian exception, entity:"+officeCianEntity);
         }
     }
 
@@ -44,8 +48,7 @@ public class OCianServiceImpl implements OCianService {
             return officeCianRepository.saveAndFlush(officeCianEntity);
         } catch (Exception e) {
             log.error("update error ", e);
-            e.printStackTrace();
-            throw e;
+            throw new UpdateException("Update Office Cian Exception, entity:"+ officeCianEntity);
         }
     }
 
@@ -57,22 +60,15 @@ public class OCianServiceImpl implements OCianService {
             officeCianRepository.deleteById(id);
         } catch (Exception e) {
             log.error("delete error ", e);
-            e.printStackTrace();
-            throw e;
+            throw new DeleteException("Delete Office Cian exception, id:"+id);
         }
     }
 
     @Override
     @Transactional(readOnly = true)
     public OfficeCianEntity findById(Long id) {
-        try {
             log.info("find by id");
-            return officeCianRepository.findById(id).orElseThrow();
-        } catch (Exception e) {
-            log.error("find by id error ", e);
-            e.printStackTrace();
-            throw e;
-        }
+            return officeCianRepository.findById(id).orElseThrow(() -> new FindException("Find Office Cian exception, id:"+id));
     }
 
     @Override
@@ -83,8 +79,7 @@ public class OCianServiceImpl implements OCianService {
             return officeCianRepository.findAll(pageable);
         } catch (Exception e) {
             log.error("find all error ", e);
-            e.printStackTrace();
-            throw e;
+            throw new FindException("Find Office Cian exception");
         }
     }
 }

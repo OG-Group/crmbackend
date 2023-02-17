@@ -27,8 +27,8 @@ public class SwaggerConfiguration {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Тут название")
-                .description("Тут описание")
+                .title("AR GROUP")
+                .description("CRM AR GROUP")
                 .licenseUrl("http://unlicense.org")
                 .termsOfServiceUrl("")
                 .version("1.0.0")
@@ -39,7 +39,7 @@ public class SwaggerConfiguration {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.example.inpp_business_logic"))
+                .apis(RequestHandlerSelectors.basePackage("com.argroupcrm.crm.swagger"))
                 .paths(PathSelectors.any())
                 .build();
     }

@@ -1,13 +1,16 @@
 package com.argroupcrm.crm.model.cian;
 
-import com.argroupcrm.crm.generic.crud.AbstractEntity;
+import com.argroupcrm.crm.generic.crud.model.AbstractEntity;
 import com.argroupcrm.crm.model.json.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -214,6 +217,17 @@ public class OfficeCianEntity extends AbstractEntity {
     private String bargainTermsAgentBonusPaymentType;
     @Column(name = "bargain_terms_agent_bonus_currency")
     private String bargainTermsAgentBonusCurrency;
+    /*=======================Office service information info============================*/
+    @Column(name = "service_information_save_on_server")
+    private Boolean serviceInformationSaveOnServer;
+    @Column(name = "service_information_save_on_cian")
+    private Boolean serviceInformationSaveOnCian;
+    @Column(name = "service_information_save_on_avito")
+    private Boolean serviceInformationSaveOnAvito;
+    @Column(name = "service_information_save_on_domclick")
+    private Boolean serviceInformationSaveOnDomclick;
+    @Column(name = "service_information_save_on_yandex")
+    private Boolean serviceInformationSaveOnYandex;
 
 
 }

@@ -1,6 +1,10 @@
 package com.argroupcrm.crm.service.cian;
 
-import com.argroupcrm.crm.generic.dto.response.CreateResponseDTO;
+import com.argroupcrm.crm.controller.advice.DeleteException;
+import com.argroupcrm.crm.controller.advice.FindException;
+import com.argroupcrm.crm.controller.advice.SaveException;
+import com.argroupcrm.crm.controller.advice.UpdateException;
+import com.argroupcrm.crm.generic.crud.dto.CreateResponseDTO;
 import com.argroupcrm.crm.model.cian.BuildingCianEntity;
 import com.argroupcrm.crm.repository.cian.BuildingCianRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,8 +32,7 @@ public class BCianServiceImpl implements BCianService {
             }
             return ResponseEntity.ok(new CreateResponseDTO(buildingCianRepository.save(buildingCianEntity).getId(), "success"));
         } catch (Exception e) {
-            log.error("addCian error ", e);
-            return ResponseEntity.badRequest().build();
+            throw new SaveException("Save Building Cian exception, entity:"+buildingCianEntity);
         }
     }
 
@@ -43,8 +46,7 @@ public class BCianServiceImpl implements BCianService {
             return buildingCianRepository.saveAndFlush(entity);
         } catch (Exception e) {
             log.error("update error ", e);
-            e.printStackTrace();
-            throw e;
+            throw new UpdateException("Update Building Cian Exception, entity:"+ entity);
         }
     }
 
@@ -56,8 +58,7 @@ public class BCianServiceImpl implements BCianService {
             buildingCianRepository.deleteById(id);
         } catch (Exception e) {
             log.error("delete error ", e);
-            e.printStackTrace();
-            throw e;
+            throw new DeleteException("Delete Building Cian exception, id:"+id);
         }
     }
 
@@ -65,13 +66,18 @@ public class BCianServiceImpl implements BCianService {
     @Transactional(readOnly = true)
     public BuildingCianEntity findById(Long id) {
         log.info("find building by id");
-        return buildingCianRepository.findById(id).orElseThrow();
+        return buildingCianRepository.findById(id).orElseThrow(()->new FindException("Find Building Cian exception, id:"+id));
     }
 
     @Override
     @Transactional(readOnly = true)
     public Page<BuildingCianEntity> findAll(Pageable pageable) {
         log.info("find building pageable");
-        return buildingCianRepository.findAll(pageable);
+        try{
+            return buildingCianRepository.findAll(pageable);
+        }catch(Exception e){
+            log.info("findall error",e);
+            throw new FindException("Find Building Cian exception");
+        }
     }
 }

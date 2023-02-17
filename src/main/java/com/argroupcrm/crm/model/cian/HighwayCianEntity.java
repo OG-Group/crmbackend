@@ -1,12 +1,14 @@
 package com.argroupcrm.crm.model.cian;
 
-import com.argroupcrm.crm.generic.crud.AbstractEntity;
+import com.argroupcrm.crm.generic.crud.model.AbstractEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "highway_cian")

@@ -1,7 +1,5 @@
 package com.argroupcrm.crm.controller.auth;
 
-import com.argroupcrm.crm.generic.crud.AbstractControllerImpl;
-import com.argroupcrm.crm.generic.crud.AbstractService;
 import com.argroupcrm.crm.model.auth.UserEntity;
 import com.argroupcrm.crm.service.auth.UserService;
 import lombok.RequiredArgsConstructor;

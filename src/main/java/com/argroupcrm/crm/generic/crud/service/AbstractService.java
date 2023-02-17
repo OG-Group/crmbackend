@@ -1,6 +1,7 @@
-package com.argroupcrm.crm.generic.crud;
+package com.argroupcrm.crm.generic.crud.service;
 
-import com.argroupcrm.crm.generic.dto.response.CreateResponseDTO;
+import com.argroupcrm.crm.generic.crud.model.AbstractEntity;
+import com.argroupcrm.crm.generic.crud.dto.CreateResponseDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;

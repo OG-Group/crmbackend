@@ -1,6 +1,5 @@
 package com.argroupcrm.crm.model.auth;
 
-import com.argroupcrm.crm.generic.crud.AbstractEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

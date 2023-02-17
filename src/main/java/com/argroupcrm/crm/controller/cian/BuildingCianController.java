@@ -1,7 +1,7 @@
 package com.argroupcrm.crm.controller.cian;
 
-import com.argroupcrm.crm.generic.crud.AbstractController;
-import com.argroupcrm.crm.generic.dto.response.CreateResponseDTO;
+import com.argroupcrm.crm.generic.crud.controller.AbstractController;
+import com.argroupcrm.crm.generic.crud.dto.CreateResponseDTO;
 import com.argroupcrm.crm.model.cian.BuildingCianEntity;
 import com.argroupcrm.crm.service.cian.BCianService;
 import io.swagger.annotations.ApiOperation;

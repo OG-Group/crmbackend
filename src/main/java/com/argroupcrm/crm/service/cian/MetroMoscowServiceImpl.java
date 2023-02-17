@@ -1,6 +1,6 @@
 package com.argroupcrm.crm.service.cian;
 
-import com.argroupcrm.crm.generic.dto.response.CreateResponseDTO;
+import com.argroupcrm.crm.generic.crud.dto.CreateResponseDTO;
 import com.argroupcrm.crm.model.cian.MetroMoscowEntity;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

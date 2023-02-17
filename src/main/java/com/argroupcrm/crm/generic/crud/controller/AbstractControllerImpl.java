@@ -1,6 +1,8 @@
-package com.argroupcrm.crm.generic.crud;
+package com.argroupcrm.crm.generic.crud.controller;
 
-import com.argroupcrm.crm.generic.dto.response.CreateResponseDTO;
+import com.argroupcrm.crm.generic.crud.model.AbstractEntity;
+import com.argroupcrm.crm.generic.crud.service.AbstractService;
+import com.argroupcrm.crm.generic.crud.dto.CreateResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
