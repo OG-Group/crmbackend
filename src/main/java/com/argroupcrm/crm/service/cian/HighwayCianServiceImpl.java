@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class HighwayCianServiceImpl implements HighwayCianService{
+public class HighwayCianServiceImpl implements HighwayCianService {
     @Override
     @Transactional
     public ResponseEntity<CreateResponseDTO> save(HighwayCianEntity entity) {
@@ -39,8 +39,8 @@ public class HighwayCianServiceImpl implements HighwayCianService{
     }
 
     @Override
-    @Transactional(readOnly = true)
     public Page<HighwayCianEntity> findAll(Pageable pageable) {
         return null;
     }
+
 }

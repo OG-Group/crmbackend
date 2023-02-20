@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @NoArgsConstructor
-public class CreateResponseDTO{
+public class CreateResponseDTO {
     private Long id;
     private String message;
 

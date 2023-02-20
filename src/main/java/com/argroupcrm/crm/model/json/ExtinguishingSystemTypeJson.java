@@ -15,5 +15,5 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ExtinguishingSystemTypeJson implements Serializable {
-    private List<String> extinguishingSystemTypeEnum;
+    private String extinguishingSystemTypeEnum;
 }

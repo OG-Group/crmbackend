@@ -1,8 +1,8 @@
 package com.argroupcrm.crm.generic.crud.service;
 
-import com.argroupcrm.crm.generic.crud.repository.AbstractRepository;
-import com.argroupcrm.crm.generic.crud.model.AbstractEntity;
 import com.argroupcrm.crm.generic.crud.dto.CreateResponseDTO;
+import com.argroupcrm.crm.generic.crud.model.AbstractEntity;
+import com.argroupcrm.crm.generic.crud.repository.AbstractRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
@@ -20,7 +20,7 @@ public abstract class AbstractServiceImpl<T extends AbstractEntity, R extends Ab
     @Transactional
     public ResponseEntity<CreateResponseDTO> save(T entity) {
         try {
-            return ResponseEntity.ok(new CreateResponseDTO(repository.save(entity).getId(),"success"));
+            return ResponseEntity.ok(new CreateResponseDTO(repository.save(entity).getId(), "success"));
         } catch (Exception e) {
             e.printStackTrace();
             throw e;

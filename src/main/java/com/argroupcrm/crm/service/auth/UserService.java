@@ -12,4 +12,8 @@ public interface UserService {
     UserEntity findByLogin(String username);
 
     UserEntity getCurrent() throws Exception;
+
+    UserEntity update(UserEntity entity);
+
+    UserEntity save(UserEntity userEntity);
 }

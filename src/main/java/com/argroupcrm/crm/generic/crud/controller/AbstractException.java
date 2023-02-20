@@ -7,11 +7,11 @@ import lombok.Data;
  * @date 17.02.2023
  */
 @Data
-public class AbstractException extends RuntimeException{
+public class AbstractException extends RuntimeException {
     private static final long serialVersionUID = 1L;
 
 
-    public AbstractException(String msg){
+    public AbstractException(String msg) {
         super(msg);
     }
 }

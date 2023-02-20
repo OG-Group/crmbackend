@@ -15,5 +15,5 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class PhoneJson implements Serializable {
     private String countryCode;
-    private String countryNumber;
+    private String phoneNumber;
 }
