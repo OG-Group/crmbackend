@@ -19,6 +19,7 @@ public class CustomControllerAdvice {
     private static final Integer INVALID_JSON = 400; //BAD_REQUEST
     private static final Integer INVALID_TOKEN = 403; //FORBIDDEN
     private static final Integer FIND_ERROR = 404; //NOT_FOUND
+
     @ExceptionHandler(SaveException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<CustomErrorMessage> saveException(SaveException er, WebRequest req) {
@@ -30,6 +31,7 @@ public class CustomControllerAdvice {
         );
         return new ResponseEntity<>(errorMessage, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
     @ExceptionHandler(DeleteException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseEntity<CustomErrorMessage> deleteException(DeleteException er, WebRequest req) {

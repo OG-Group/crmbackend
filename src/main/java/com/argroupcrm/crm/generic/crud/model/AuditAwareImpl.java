@@ -6,10 +6,12 @@ import org.springframework.data.domain.AuditorAware;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
+
 @Component("auditorAware")
 @RequiredArgsConstructor
 public class AuditAwareImpl implements AuditorAware<String> {
     private final UserServiceImpl userService;
+
     @Override
     public Optional<String> getCurrentAuditor() {
         try {

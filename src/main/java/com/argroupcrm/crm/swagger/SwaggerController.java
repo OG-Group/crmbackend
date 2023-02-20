@@ -14,6 +14,6 @@ import java.io.IOException;
 public class SwaggerController {
     @GetMapping(value = "/")
     public void root(HttpServletResponse rsp) throws IOException {
-        rsp.sendRedirect("swagger-ui/");
+        rsp.sendRedirect("swagger-ui/index.html");
     }
 }

@@ -1,4 +1,5 @@
 package com.argroupcrm.crm.dto.auth;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

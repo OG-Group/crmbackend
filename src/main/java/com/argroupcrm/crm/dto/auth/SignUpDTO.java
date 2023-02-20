@@ -2,8 +2,10 @@ package com.argroupcrm.crm.dto.auth;
 
 import lombok.Data;
 
-
-import javax.validation.constraints.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 /**
  * Created by ogbozoyan at 16.01.2023
@@ -26,6 +28,7 @@ public class SignUpDTO {
     private String email;
     @NotBlank
     private String phone;
+
     @Override
     public String toString() {
         return "SignUpDTO{" +

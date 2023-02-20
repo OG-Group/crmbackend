@@ -1,5 +1,7 @@
 package com.argroupcrm.crm.service.auth;
 
+import com.argroupcrm.crm.controller.advice.SaveException;
+import com.argroupcrm.crm.controller.advice.UpdateException;
 import com.argroupcrm.crm.dto.auth.SignUpDTO;
 import com.argroupcrm.crm.model.auth.RoleEntity;
 import com.argroupcrm.crm.model.auth.UserEntity;
@@ -8,6 +10,7 @@ import com.argroupcrm.crm.repository.auth.UserEntityRepository;
 import com.argroupcrm.crm.security.jwt.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,6 +29,43 @@ public class UserServiceImpl implements UserService {
     private final UserEntityRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final RoleEntityRepository roleEntityRepository;
+    private final ModelMapper patchingMapper;
+
+    @Override
+    @Transactional
+    public UserEntity update(UserEntity entity) {
+        try {
+            log.info("update user");
+            UserEntity fromDto = patchingMapper.map(entity, UserEntity.class);
+            UserEntity entityFromBd = userRepository.findById(fromDto.getId()).orElseThrow();
+            patchingMapper.map(fromDto, entityFromBd);
+            return userRepository.saveAndFlush(fromDto);
+        } catch (Exception e) {
+            log.error("update error ", e);
+            e.printStackTrace();
+            throw new UpdateException("Update User  Exception, entity:" + entity);
+        }
+    }
+
+    @Override
+    @Transactional
+    public UserEntity save(UserEntity userEntity) {
+        try {
+            log.info("save user");
+            UserEntity fromDto = patchingMapper.map(userEntity, UserEntity.class);
+
+            if (userRepository.existsById(fromDto.getId())) {
+                return userRepository.findById(fromDto.getId()).orElseThrow(() -> new
+                        SaveException("Save User exception, entity:" + userEntity)
+                );
+            }
+            return userRepository.save(fromDto);
+        } catch (Exception e) {
+            log.error("save error ", e);
+            e.printStackTrace();
+            throw new SaveException("Save User exception, entity:" + userEntity);
+        }
+    }
 
     @Override
     public boolean exist(String login) {

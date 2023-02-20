@@ -8,12 +8,11 @@ import java.io.Serializable;
 
 /**
  * @author ogbozoyan
- * @date 12.02.2023
+ * @date 19.02.2023
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class HighwayJson implements Serializable {
-    private String distance;
-    private String id;
+public class PublisherTermsSchemaServicesJson implements Serializable {
+    private String ServicesEnum;
 }

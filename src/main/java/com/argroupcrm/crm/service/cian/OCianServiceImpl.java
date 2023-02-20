@@ -4,6 +4,7 @@ import com.argroupcrm.crm.controller.advice.DeleteException;
 import com.argroupcrm.crm.controller.advice.FindException;
 import com.argroupcrm.crm.controller.advice.SaveException;
 import com.argroupcrm.crm.controller.advice.UpdateException;
+import com.argroupcrm.crm.dto.cian.OfficeCianEntityDto;
 import com.argroupcrm.crm.generic.crud.dto.CreateResponseDTO;
 import com.argroupcrm.crm.model.cian.OfficeCianEntity;
 import com.argroupcrm.crm.repository.cian.OfficeCianRepository;
@@ -25,30 +26,32 @@ public class OCianServiceImpl implements OCianService {
 
     @Override
     @Transactional
-    public ResponseEntity<CreateResponseDTO> save(OfficeCianEntity officeCianEntity) {
-        log.info("createCianOffice");
+    public ResponseEntity<CreateResponseDTO> save(OfficeCianEntityDto officeCianEntity) {
         try {
-            if (officeCianRepository.existsById(officeCianEntity.getId())) {
+            log.info("createCianOffice");
+            OfficeCianEntity fromDto = patchingMapper.map(officeCianEntity, OfficeCianEntity.class);
+            if (officeCianRepository.existsById(fromDto.getId())) {
                 return ResponseEntity.status(409).build();
             }
-            return ResponseEntity.ok(new CreateResponseDTO(officeCianRepository.save(officeCianEntity).getId(), "success"));
+            return ResponseEntity.ok(new CreateResponseDTO(officeCianRepository.save(fromDto).getId(), "success"));
         } catch (Exception e) {
             log.error("addCian error ", e);
-            throw new SaveException("Save Office Cian exception, entity:"+officeCianEntity);
+            throw new SaveException("Save Office Cian exception, entity:" + officeCianEntity);
         }
     }
 
     @Override
     @Transactional
-    public OfficeCianEntity update(OfficeCianEntity officeCianEntity) {
+    public OfficeCianEntity update(OfficeCianEntityDto officeCianEntity) {
         try {
             log.info("update building");
-            OfficeCianEntity entityFromBd = officeCianRepository.findById(officeCianEntity.getId()).orElseThrow();
-            patchingMapper.map(officeCianEntity, entityFromBd);
-            return officeCianRepository.saveAndFlush(officeCianEntity);
+            OfficeCianEntity fromDto = patchingMapper.map(officeCianEntity, OfficeCianEntity.class);
+            OfficeCianEntity entityFromBd = officeCianRepository.findById(fromDto.getId()).orElseThrow();
+            patchingMapper.map(fromDto, entityFromBd);
+            return officeCianRepository.saveAndFlush(fromDto);
         } catch (Exception e) {
             log.error("update error ", e);
-            throw new UpdateException("Update Office Cian Exception, entity:"+ officeCianEntity);
+            throw new UpdateException("Update Office Cian Exception, entity:" + officeCianEntity);
         }
     }
 
@@ -60,15 +63,15 @@ public class OCianServiceImpl implements OCianService {
             officeCianRepository.deleteById(id);
         } catch (Exception e) {
             log.error("delete error ", e);
-            throw new DeleteException("Delete Office Cian exception, id:"+id);
+            throw new DeleteException("Delete Office Cian exception, id:" + id);
         }
     }
 
     @Override
     @Transactional(readOnly = true)
     public OfficeCianEntity findById(Long id) {
-            log.info("find by id");
-            return officeCianRepository.findById(id).orElseThrow(() -> new FindException("Find Office Cian exception, id:"+id));
+        log.info("find by id");
+        return officeCianRepository.findById(id).orElseThrow(() -> new FindException("Find Office Cian exception, id:" + id));
     }
 
     @Override

@@ -1,0 +1,16 @@
+               AAA                RRRRRRRRRRRRRRRRR                GGGGGGGGGGGGG RRRRRRRRRRRRRRRRR        OOOOOOOOO      UUUUUUUU    UUUUUUUU PPPPPPPPPPPPPPPPP
+              A:::A               R::::::::::::::::R            GGG::::::::::::G R::::::::::::::::R     OO:::::::::OO    U::::::U    U::::::U P::::::::::::::::P
+             A:::::A              R::::::RRRRRR:::::R         GG:::::::::::::::G R::::::RRRRRR:::::R  OO:::::::::::::OO  U::::::U    U::::::U P::::::PPPPPP:::::P
+            A:::::::A             RR:::::R     R:::::R       G:::::GGGGGGGG::::G RR:::::R     R:::::R O:::::::OOO::::::O UU:::::U    U:::::UU PP:::::P     P:::::P
+           A:::::::::A              R::::R     R:::::R      G:::::G       GGGGGG  R::::R     R:::::R O::::::O   O::::::O U:::::U     U:::::U    P::::P     P:::::P
+          A:::::A:::::A             R::::R     R:::::R     G:::::G                R::::R     R:::::R O:::::O     O:::::O U:::::D     D:::::U    P::::P     P:::::P
+         A:::::A A:::::A            R::::RRRRRR:::::R      G:::::G                R::::RRRRRR:::::R  O:::::O     O:::::O U:::::D     D:::::U    P::::PPPPPP:::::P
+        A:::::A   A:::::A           R:::::::::::::RR       G:::::G    GGGGGGGGGG  R:::::::::::::RR   O:::::O     O:::::O U:::::D     D:::::U    P:::::::::::::PP
+       A:::::A     A:::::A          R::::RRRRRR:::::R      G:::::G    G::::::::G  R::::RRRRRR:::::R  O:::::O     O:::::O U:::::D     D:::::U    P::::PPPPPPPPP
+      A:::::AAAAAAAAA:::::A         R::::R     R:::::R     G:::::G    GGGGG::::G  R::::R     R:::::R O:::::O     O:::::O U:::::D     D:::::U    P::::P
+     A:::::::::::::::::::::A        R::::R     R:::::R     G:::::G        G::::G  R::::R     R:::::R O:::::O     O:::::O U:::::D     D:::::U    P::::P
+    A:::::AAAAAAAAAAAAA:::::A       R::::R     R:::::R      G:::::G       G::::G  R::::R     R:::::R O::::::O   O::::::O U::::::U   U::::::U    P::::P
+   A:::::A             A:::::A    RR:::::R     R:::::R       G:::::GGGGGGGG::::GR R:::::R     R:::::R O:::::::OOO:::::::O U:::::::UUU:::::::U  PP::::::PP
+  A:::::A               A:::::A   R::::::R     R:::::R        GG:::::::::::::::G R::::::R     R:::::R  OO:::::::::::::OO   UU:::::::::::::UU   P::::::::P
+ A:::::A                 A:::::A  R::::::R     R:::::R          GGG::::::GGG:::G R::::::R     R:::::R    OO:::::::::OO       UU:::::::::UU     P::::::::P
+AAAAAAA                   AAAAAAA RRRRRRRR     RRRRRRR             GGGGGG   GGGG RRRRRRRR     RRRRRRR      OOOOOOOOO           UUUUUUUUU       PPPPPPPPPP
