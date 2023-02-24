@@ -19,7 +19,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Service
@@ -77,8 +76,6 @@ public class UserServiceImpl implements UserService {
     public ResponseEntity<UserEntity> signUp(SignUpDTO signUpDTO) {
         log.info("signUp");
         Set<RoleEntity> role = new HashSet<>();
-        List<RoleEntity> roles = roleEntityRepository.findAll();
-        System.out.println();
         role.add(roleEntityRepository.findByName("ROLE_USER"));
         UserEntity user = userRepository.findByLogin(signUpDTO.getLogin());
         if (user != null) {
@@ -107,13 +104,11 @@ public class UserServiceImpl implements UserService {
     @Transactional(readOnly = true)
     public UserEntity getCurrent() throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println(auth);
         if (auth == null) {
             throw new Exception("UserService.getCurrentUser(): Ошибка получения аутентификационных данных");
         }
         Object principal = auth.getPrincipal();
         String userInfo;
-        System.out.println(principal);
         if (principal instanceof CustomUserDetails) {
             userInfo = ((CustomUserDetails) principal).getUsername();
             return findByLogin(userInfo);

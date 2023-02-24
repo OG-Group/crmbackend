@@ -60,7 +60,8 @@ public class BuildingCianController {
         }
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/byid/{id}")//TODO fix this
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER','ROLE_MODERATOR')")
     public ResponseEntity<BuildingCianEntity> getOne(@PathVariable Long id) {
         try {
             log.info("getOne building");
@@ -72,6 +73,7 @@ public class BuildingCianController {
     }
 
     @PatchMapping
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER','ROLE_MODERATOR')")
     public ResponseEntity<BuildingCianEntity> update(@RequestBody BuildingCianEntityDto update) {
         try {
             log.info("update building");
@@ -83,6 +85,7 @@ public class BuildingCianController {
     }
 
     @DeleteMapping("{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER','ROLE_MODERATOR')")
     public void delete(@PathVariable Long id) {
         try {
             log.info("delete building");

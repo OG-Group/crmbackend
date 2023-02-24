@@ -15,7 +15,6 @@ public class AuditAwareImpl implements AuditorAware<String> {
     @Override
     public Optional<String> getCurrentAuditor() {
         try {
-            System.out.println("user login: " + userService.getCurrent().getLogin());
             return Optional.of(userService.getCurrent().getLogin());
         } catch (Exception e) {
             throw new RuntimeException(e);
