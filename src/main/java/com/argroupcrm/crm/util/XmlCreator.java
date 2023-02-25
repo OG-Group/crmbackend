@@ -30,7 +30,6 @@ public class XmlCreator {
     SimpleDateFormat dateFormat = new SimpleDateFormat("_dd_MM_yyyy");
     Date date = new Date();
 
-    //https://stackoverflow.com/questions/883987/java-appending-xml-docs-to-existing-docs append to existing file
     public void CianRentBuildingXML(BuildingCianEntity entity, Integer countAvailablePremium) throws ParserConfigurationException, TransformerException, IOException, SAXException {
 
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -38,7 +37,6 @@ public class XmlCreator {
         File cianFeed = new File("buildingRentCian" + dateFormat.format(date) + ".xml");
 
         if (cianFeed.exists()) {
-            System.out.println("Today exist");
             Document doc = docBuilder.parse(cianFeed);
             Add2CianRentBuildingXML(cianFeed, doc, entity, countAvailablePremium);
             return;
@@ -1041,4 +1039,28 @@ public class XmlCreator {
         transformer.transform(source, result);
 
     }
+
+    public void CianSaleBuildingXML(BuildingCianEntity entity, Integer countAvailablePremium) throws ParserConfigurationException, IOException, SAXException {
+        DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+        File cianFeed = new File("buildingRentCian" + dateFormat.format(date) + ".xml");
+
+        if (cianFeed.exists()) {
+            Document doc = docBuilder.parse(cianFeed);
+            Add2CianSaleBuildingXML(cianFeed, doc, entity, countAvailablePremium);
+            return;
+        }
+
+        // root elements
+        Document doc = docBuilder.newDocument();
+        Element rootElement = doc.createElement("feed");
+        doc.appendChild(rootElement);
+        //feed version
+        Element feedVersion = doc.createElement("feed_version");
+        feedVersion.appendChild(doc.createTextNode("2"));
+        rootElement.appendChild(feedVersion);
+        Element object = doc.createElement("object");
+        rootElement.appendChild(object);
+    }
+    private void Add2CianSaleBuildingXML(File cianFeed, Document doc, BuildingCianEntity entity, Integer countAvailablePremium){}
 }

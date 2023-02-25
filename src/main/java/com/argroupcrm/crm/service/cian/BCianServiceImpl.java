@@ -48,6 +48,13 @@ public class BCianServiceImpl implements BCianService {
                     Integer countAvailablePremium = user.getPremiumCianCount();
 
                     feed.CianRentBuildingXML(newEntity, countAvailablePremium);
+                } else if (newEntity.getCategoryBuilding().toLowerCase().contains("buildingsale")) {
+                    XmlCreator feed = new XmlCreator();
+                    UserEntity user = userService.getCurrent();
+
+                    Integer countAvailablePremium = user.getPremiumCianCount();
+
+                    feed.CianSaleBuildingXML(newEntity, countAvailablePremium);
                 }
             }
 
