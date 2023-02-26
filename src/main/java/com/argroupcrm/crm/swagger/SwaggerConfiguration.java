@@ -6,9 +6,6 @@ import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
-import lombok.Data;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -35,6 +32,7 @@ public class SwaggerConfiguration {
                 .security(List.of(new SecurityRequirement()));
 
     }
+
     Info springDocapiInfo() {
         return new Info()
                 .title("CRM AR Group")

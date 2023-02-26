@@ -20,10 +20,10 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     @Transactional
     public CustomUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        try{
+        try {
             UserEntity user = userService.findByLogin(username);
             return CustomUserDetails.build(user);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new UsernameNotFoundException("User Not Found with username: " + username);
         }
     }

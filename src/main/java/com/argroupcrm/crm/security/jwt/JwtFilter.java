@@ -1,9 +1,5 @@
 package com.argroupcrm.crm.security.jwt;
 
-import com.argroupcrm.crm.security.jwt.CustomUserDetails;
-import com.argroupcrm.crm.security.jwt.CustomUserDetailsService;
-import com.argroupcrm.crm.security.jwt.JwtProvider;
-import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,7 +11,6 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
 
 import static io.jsonwebtoken.lang.Strings.hasText;
@@ -34,6 +29,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
     @Autowired
     private CustomUserDetailsService userDetailsService;
+
     private String getToken(HttpServletRequest request) {
         String bearer = request.getHeader(AUTHORIZATION);
         if (hasText(bearer) && bearer.startsWith("Bearer ")) {
@@ -48,8 +44,7 @@ public class JwtFilter extends OncePerRequestFilter {
         if (token != null && jwtProvider.validateToken(token)) {
             String userLogin = jwtProvider.getLoginFromToken(token);
             org.springframework.security.core.userdetails.UserDetails userDetails = userDetailsService.loadUserByUsername(userLogin);
-            UsernamePasswordAuthenticationToken authentication
-                    = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
             authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }

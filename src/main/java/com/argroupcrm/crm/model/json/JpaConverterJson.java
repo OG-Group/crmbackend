@@ -14,15 +14,14 @@ import java.io.IOException;
  */
 @Data
 @Converter
-public class JpaConverterJson implements AttributeConverter<Object, String>{
+public class JpaConverterJson implements AttributeConverter<Object, String> {
 
     private final static ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
     public String convertToDatabaseColumn(Object meta) {
         try {
-            if(meta == null)
-            {
+            if (meta == null) {
                 return null;
             }
             return objectMapper.writeValueAsString(meta);
@@ -34,8 +33,7 @@ public class JpaConverterJson implements AttributeConverter<Object, String>{
     @Override
     public Object convertToEntityAttribute(String dbData) {
         try {
-            if(dbData == null)
-            {
+            if (dbData == null) {
                 return null;
             }
             return objectMapper.readValue(dbData, Object.class);

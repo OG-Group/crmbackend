@@ -81,18 +81,9 @@ public class CustomUserDetails implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-    public static CustomUserDetails build(
-            UserEntity user
-    ) {
-        List<GrantedAuthority> authorities = user.getRoles().stream().map(role ->
-                new SimpleGrantedAuthority(role.getName())
-        ).collect(Collectors.toList());
-        return new CustomUserDetails(
-                user.getId(),
-                user.getLogin(),
-                user.getPassword(),
-                user.getPhone(),
-                authorities
-        );
+
+    public static CustomUserDetails build(UserEntity user) {
+        List<GrantedAuthority> authorities = user.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
+        return new CustomUserDetails(user.getId(), user.getLogin(), user.getPassword(), user.getPhone(), authorities);
     }
 }

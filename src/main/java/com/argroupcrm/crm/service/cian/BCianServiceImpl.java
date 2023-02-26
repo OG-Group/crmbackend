@@ -27,6 +27,7 @@ public class BCianServiceImpl implements BCianService {
     private final BuildingCianRepository buildingCianRepository;
     private final UserService userService;
     private final ModelMapper patchingMapper;
+    private final XmlCreator feed;
 
     @Override
     @Transactional
@@ -42,14 +43,13 @@ public class BCianServiceImpl implements BCianService {
 
             if (newEntity.getServiceInformationSaveOnCian()) {
                 if (newEntity.getCategoryBuilding().toLowerCase().contains("buildingrent")) {
-                    XmlCreator feed = new XmlCreator();
+
                     UserEntity user = userService.getCurrent();
 
                     Integer countAvailablePremium = user.getPremiumCianCount();
 
                     feed.CianRentBuildingXML(newEntity, countAvailablePremium);
                 } else if (newEntity.getCategoryBuilding().toLowerCase().contains("buildingsale")) {
-                    XmlCreator feed = new XmlCreator();
                     UserEntity user = userService.getCurrent();
 
                     Integer countAvailablePremium = user.getPremiumCianCount();

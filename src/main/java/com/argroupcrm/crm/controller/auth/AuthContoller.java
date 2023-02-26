@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/auth")
@@ -21,7 +22,7 @@ public class AuthContoller {
     private final UserService userService;
 
     @PostMapping("/signup")
-    public ResponseEntity<?> signUp(@Valid @RequestBody SignUpDTO signUpDTO){
+    public ResponseEntity<?> signUp(@Valid @RequestBody SignUpDTO signUpDTO) {
         log.info("signUp");
 
         return userService.signUp(signUpDTO);

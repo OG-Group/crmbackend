@@ -229,6 +229,9 @@ public class BuildingCianEntity extends AbstractEntity {
     @Column(name = "bargain_terms_agent_bonus_currency")
     private String bargainTermsAgentBonusCurrency;
 
+    @Column(name = "bargain_terms_contract_type")
+    private String bargainTermsContractType;
+
     /*=================Linked Office info=================================================================================*/
 //    @OneToMany(cascade = CascadeType.ALL)
 //    @JoinTable(
