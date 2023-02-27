@@ -2322,6 +2322,8 @@ public class XmlCianCommercial {
         building.appendChild(ceilingHeight);
 
         Element parking = doc.createElement("Parking");
+        Element parkingCurrency = doc.createElement("Currency");
+        parkingCurrency.appendChild(doc.createTextNode(entity.getBuildingParkingCurrency()));
         Element typeP = doc.createElement("Type");
         typeP.appendChild(doc.createTextNode(entity.getBuildingParkingType()));
         Element placesCount = doc.createElement("PlacesCount");
@@ -2334,6 +2336,7 @@ public class XmlCianCommercial {
         parking.appendChild(placesCount);
         parking.appendChild(priceMounthly);
         parking.appendChild(pIsFree);
+        parking.appendChild(parkingCurrency);
         building.appendChild(parking);
 
         Element buildingType = doc.createElement("Type");
@@ -3517,6 +3520,8 @@ public class XmlCianCommercial {
         building.appendChild(ceilingHeight);
 
         Element parking = doc.createElement("Parking");
+        Element parkingCurrency = doc.createElement("Currency");
+        parkingCurrency.appendChild(doc.createTextNode(entity.getBuildingParkingCurrency()));
         Element typeP = doc.createElement("Type");
         typeP.appendChild(doc.createTextNode(entity.getBuildingParkingType()));
         Element placesCount = doc.createElement("PlacesCount");
@@ -3529,6 +3534,7 @@ public class XmlCianCommercial {
         parking.appendChild(placesCount);
         parking.appendChild(priceMounthly);
         parking.appendChild(pIsFree);
+        parking.appendChild(parkingCurrency);
         building.appendChild(parking);
 
 
@@ -4083,6 +4089,8 @@ public class XmlCianCommercial {
         building.appendChild(ceilingHeight);
 
         Element parking = doc.createElement("Parking");
+        Element parkingCurrency = doc.createElement("Currency");
+        parkingCurrency.appendChild(doc.createTextNode(entity.getBuildingParkingCurrency()));
         Element typeP = doc.createElement("Type");
         typeP.appendChild(doc.createTextNode(entity.getBuildingParkingType()));
         Element placesCount = doc.createElement("PlacesCount");
@@ -4095,6 +4103,7 @@ public class XmlCianCommercial {
         parking.appendChild(placesCount);
         parking.appendChild(priceMounthly);
         parking.appendChild(pIsFree);
+        parking.appendChild(parkingCurrency);
         building.appendChild(parking);
 
         Element buildingType = doc.createElement("Type");
