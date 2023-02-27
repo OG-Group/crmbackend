@@ -8,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 
 public interface OCianService {
-    ResponseEntity<CreateResponseDTO> save(OfficeCianEntityDto officeCianEntity);
+    ResponseEntity<CreateResponseDTO> save(OfficeCianEntity officeCianEntity);
 
     OfficeCianEntity update(OfficeCianEntityDto officeCianEntity);
 

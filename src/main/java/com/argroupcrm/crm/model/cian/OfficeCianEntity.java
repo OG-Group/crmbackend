@@ -40,6 +40,8 @@ public class OfficeCianEntity extends AbstractEntity {
     private String mainGuestCount;
     @Column(name = "main_address")
     private String mainAddress;
+    @Column(name = "main_premium_title")
+    private String mainPremiumTitle;
     @Column(name = "main_coordinates_lat")
     private String mainCoordinatesLat;
     @Column(name = "main_coordinates_lng")
@@ -48,7 +50,7 @@ public class OfficeCianEntity extends AbstractEntity {
     private String mainCadastralNumber;
     @Column(name = "main_phones_schema", columnDefinition = "jsonb")
     @Type(type = "jsonb")
-    private List<PhoneJson> mainPhoneSchemaCountryCode;
+    private List<PhoneJson> mainPhonesSchema;
     @Column(name = "main_highway_distance")
     private String mainHighwayDistance;
     @Column(name = "main_higway_id")
@@ -58,7 +60,7 @@ public class OfficeCianEntity extends AbstractEntity {
     private List<HighwayJson> mainHighwaySchema;
     @Column(name = "main_undegrounds_schema", columnDefinition = "jsonb")
     @Type(type = "jsonb")
-    private List<HighwayJson> mainUndegroundsSchema;
+    private List<UndegroundJson> mainUndegroundsSchema;
     @Column(name = "main_booking_status")
     private String mainBookingStatus;
     @Column(name = "main_subagent_email")
@@ -83,8 +85,6 @@ public class OfficeCianEntity extends AbstractEntity {
     @Column(name = "main_video_schema", columnDefinition = "jsonb")
     @Type(type = "jsonb")
     private List<VideoJson> mainVideoSchema;
-    @Column(name = "main_premium_title")
-    private String mainPremiumTitle;
     @Column(name = "main_is_rent_by_parts")
     private Boolean mainIsRentByParts;
     @Column(name = "main_rent_by_parts_desc")
@@ -157,6 +157,8 @@ public class OfficeCianEntity extends AbstractEntity {
     private String buildingParkingPriceMonthly;
     @Column(name = "building_parking_is_free")
     private Boolean buildingParkingIsFree;
+    @Column(name = "building_parking_currency")
+    private String buildingParkingCurrency;
     @Column(name = "building_type")
     private String buildingType;
     @Column(name = "building_class_type")
@@ -178,7 +180,7 @@ public class OfficeCianEntity extends AbstractEntity {
     private String buildingAccessType;
     @Column(name = "building_infrustructure", columnDefinition = "jsonb")
     @Type(type = "jsonb")
-    private List<String> buildingInfrustructure;
+    private BuildingInfrastructure buildingInfrustructure;
     @Column(name = "building_status_type")
     private String buildingStatusType;
     /*=================Office land info=================================================================================*/
@@ -206,6 +208,8 @@ public class OfficeCianEntity extends AbstractEntity {
     private String bargainTermsPaymentPeriod;
     @Column(name = "bargain_terms_vat_type")
     private String bargainTermsVatType;
+    @Column(name = "bargain_contract_type")
+    private String bargainContractType;
     @Column(name = "bargain_terms_lease_type")
     private String bargainTermsLeaseType;
     @Column(name = "bargain_terms_include_options_enum", columnDefinition = "jsonb")
@@ -240,6 +244,5 @@ public class OfficeCianEntity extends AbstractEntity {
     private Boolean serviceInformationSaveOnDomclick;
     @Column(name = "service_information_save_on_yandex")
     private Boolean serviceInformationSaveOnYandex;
-
 
 }

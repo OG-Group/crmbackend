@@ -6,8 +6,12 @@ import com.argroupcrm.crm.controller.advice.SaveException;
 import com.argroupcrm.crm.controller.advice.UpdateException;
 import com.argroupcrm.crm.dto.cian.OfficeCianEntityDto;
 import com.argroupcrm.crm.generic.crud.dto.CreateResponseDTO;
+import com.argroupcrm.crm.model.auth.UserEntity;
+import com.argroupcrm.crm.model.cian.BuildingCianEntity;
 import com.argroupcrm.crm.model.cian.OfficeCianEntity;
 import com.argroupcrm.crm.repository.cian.OfficeCianRepository;
+import com.argroupcrm.crm.service.auth.UserService;
+import com.argroupcrm.crm.util.XmlCreator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -22,16 +26,36 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 public class OCianServiceImpl implements OCianService {
     private final OfficeCianRepository officeCianRepository;
+    private final UserService userService;
     private final ModelMapper patchingMapper;
+    private final XmlCreator feed;
 
     @Override
     @Transactional
-    public ResponseEntity<CreateResponseDTO> save(OfficeCianEntityDto officeCianEntity) {
+    public ResponseEntity<CreateResponseDTO> save(OfficeCianEntity officeCianEntity) {
         try {
             log.info("createCianOffice");
             OfficeCianEntity fromDto = patchingMapper.map(officeCianEntity, OfficeCianEntity.class);
-            if (officeCianRepository.existsById(fromDto.getId())) {
-                return ResponseEntity.status(409).build();
+//            if (officeCianRepository.existsById(fromDto.getId())) {
+//                return ResponseEntity.status(409).build();
+//            }
+            OfficeCianEntity newEntity = officeCianRepository.save(fromDto);
+
+            if (newEntity.getServiceInformationSaveOnCian()) {
+                if (newEntity.getCategoryOffice().toLowerCase().contains("officerent")) {
+
+                    UserEntity user = userService.getCurrent();
+
+                    Integer countAvailablePremium = user.getPremiumCianCount();
+
+                    feed.CianRentOfficeXML(newEntity, countAvailablePremium);
+                } else if (newEntity.getCategoryOffice().toLowerCase().contains("officesale")) {
+                    UserEntity user = userService.getCurrent();
+
+                    Integer countAvailablePremium = user.getPremiumCianCount();
+
+                    feed.CianSaleOfficeXML(newEntity, countAvailablePremium);
+                }
             }
             return ResponseEntity.ok(new CreateResponseDTO(officeCianRepository.save(fromDto).getId(), "success"));
         } catch (Exception e) {

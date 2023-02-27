@@ -24,7 +24,7 @@ public class OfficeCianController {
 
     @PostMapping
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER','ROLE_MODERATOR')")
-    public ResponseEntity<CreateResponseDTO> create(@RequestBody OfficeCianEntityDto officeCianEntity) {
+    public ResponseEntity<CreateResponseDTO> create(@RequestBody OfficeCianEntity officeCianEntity) {
         log.info("addCian");
         try {
             return oCianService.save(officeCianEntity);

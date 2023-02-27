@@ -1,6 +1,7 @@
 package com.argroupcrm.crm.util;
 
 import com.argroupcrm.crm.model.cian.BuildingCianEntity;
+import com.argroupcrm.crm.model.cian.OfficeCianEntity;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -14,14 +15,21 @@ import java.io.IOException;
 @Component
 @RequiredArgsConstructor
 public class XmlCreator {
-    private final XmlCian xmlCian;
+    private final XmlCianCommercial xmlCianCommercial;
 
     public void CianRentBuildingXML(BuildingCianEntity entity, Integer countAvailablePremium) throws ParserConfigurationException, TransformerException, IOException, SAXException {
-        xmlCian.CianRentBuildingXML(entity, countAvailablePremium);
+        xmlCianCommercial.CianRentBuildingXML(entity, countAvailablePremium);
     }
 
     public void CianSaleBuildingXML(BuildingCianEntity entity, Integer countAvailablePremium) throws ParserConfigurationException, IOException, SAXException, TransformerException {
-        xmlCian.CianSaleBuildingXML(entity, countAvailablePremium);
+        xmlCianCommercial.CianSaleBuildingXML(entity, countAvailablePremium);
     }
 
+    public void CianRentOfficeXML(OfficeCianEntity entity, Integer countAvailablePremium) throws ParserConfigurationException, IOException, TransformerException, SAXException, NoSuchFieldException {
+        xmlCianCommercial.CianRentOfficeXML(entity,countAvailablePremium);
+    }
+
+    public void CianSaleOfficeXML(OfficeCianEntity entity, Integer countAvailablePremium) throws IOException, ParserConfigurationException, SAXException, TransformerException {
+        xmlCianCommercial.CianSaleOfficeXml(entity,countAvailablePremium);
+    }
 }
