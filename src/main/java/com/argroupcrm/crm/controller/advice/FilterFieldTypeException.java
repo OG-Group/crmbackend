@@ -5,10 +5,10 @@ import com.argroupcrm.crm.generic.crud.controller.advice.AbstractException;
 
 /**
  * @author ogbozoyan
- * @date 17.02.2023
+ * @date 03.03.2023
  */
-public class DeleteException extends AbstractException {
-    public DeleteException(String msg) {
+public class FilterFieldTypeException extends AbstractException {
+    public FilterFieldTypeException(String msg) {
         super(msg);
     }
 }

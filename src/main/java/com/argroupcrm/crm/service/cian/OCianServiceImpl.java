@@ -7,7 +7,6 @@ import com.argroupcrm.crm.controller.advice.UpdateException;
 import com.argroupcrm.crm.dto.cian.OfficeCianEntityDto;
 import com.argroupcrm.crm.generic.crud.dto.CreateResponseDTO;
 import com.argroupcrm.crm.model.auth.UserEntity;
-import com.argroupcrm.crm.model.cian.BuildingCianEntity;
 import com.argroupcrm.crm.model.cian.OfficeCianEntity;
 import com.argroupcrm.crm.repository.cian.OfficeCianRepository;
 import com.argroupcrm.crm.service.auth.UserService;
@@ -72,6 +71,22 @@ public class OCianServiceImpl implements OCianService {
             OfficeCianEntity fromDto = patchingMapper.map(officeCianEntity, OfficeCianEntity.class);
             OfficeCianEntity entityFromBd = officeCianRepository.findById(fromDto.getId()).orElseThrow();
             patchingMapper.map(fromDto, entityFromBd);
+            if (fromDto.getServiceInformationSaveOnCian()) {
+                if (fromDto.getCategoryOffice().toLowerCase().contains("officerent")) {
+
+                    UserEntity user = userService.getCurrent();
+
+                    Integer countAvailablePremium = user.getPremiumCianCount();
+
+                    feed.CianRentOfficeXML(fromDto, countAvailablePremium);
+                } else if (fromDto.getCategoryOffice().toLowerCase().contains("officesale")) {
+                    UserEntity user = userService.getCurrent();
+
+                    Integer countAvailablePremium = user.getPremiumCianCount();
+
+                    feed.CianSaleOfficeXML(fromDto, countAvailablePremium);
+                }
+            }
             return officeCianRepository.saveAndFlush(fromDto);
         } catch (Exception e) {
             log.error("update error ", e);

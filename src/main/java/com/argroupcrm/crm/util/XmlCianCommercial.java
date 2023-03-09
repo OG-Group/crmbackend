@@ -1,6 +1,6 @@
 package com.argroupcrm.crm.util;
 
-import com.argroupcrm.crm.generic.crud.controller.AbstractException;
+import com.argroupcrm.crm.generic.crud.controller.advice.AbstractException;
 import com.argroupcrm.crm.model.cian.BuildingCianEntity;
 import com.argroupcrm.crm.model.cian.OfficeCianEntity;
 import com.argroupcrm.crm.model.json.*;

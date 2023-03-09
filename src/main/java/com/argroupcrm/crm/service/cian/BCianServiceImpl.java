@@ -74,6 +74,22 @@ public class BCianServiceImpl implements BCianService {
             BuildingCianEntity fromDto = patchingMapper.map(entity, BuildingCianEntity.class);
             BuildingCianEntity entityFromBd = buildingCianRepository.findById(fromDto.getId()).orElseThrow();
             patchingMapper.map(fromDto, entityFromBd);
+            if (fromDto.getServiceInformationSaveOnCian()) {
+                if (fromDto.getCategoryBuilding().toLowerCase().contains("buildingrent")) {
+
+                    UserEntity user = userService.getCurrent();
+
+                    Integer countAvailablePremium = user.getPremiumCianCount();
+
+                    feed.CianRentBuildingXML(fromDto, countAvailablePremium);
+                } else if (fromDto.getCategoryBuilding().toLowerCase().contains("buildingsale")) {
+                    UserEntity user = userService.getCurrent();
+
+                    Integer countAvailablePremium = user.getPremiumCianCount();
+
+                    feed.CianSaleBuildingXML(fromDto, countAvailablePremium);
+                }
+            }
             return buildingCianRepository.saveAndFlush(fromDto);
         } catch (Exception e) {
             log.error("update error ", e);

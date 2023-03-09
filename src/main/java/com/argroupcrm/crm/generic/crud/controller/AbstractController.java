@@ -1,44 +1,51 @@
 package com.argroupcrm.crm.generic.crud.controller;
 
-import com.argroupcrm.crm.generic.crud.dto.CreateResponseDTO;
+import com.argroupcrm.crm.generic.crud.dto.AbstractResponseDTO;
 import com.argroupcrm.crm.generic.crud.model.AbstractEntity;
+import com.argroupcrm.crm.generic.crud.model.specification.request.SearchRequest;
 import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.data.domain.Page;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 
 public interface AbstractController<T extends AbstractEntity> {
-
-    @Operation(summary = "Получить постранично")
+    @Operation(summary = "Получить постранично", security = @SecurityRequirement(name = "bearerAuth"))
     @ResponseStatus(HttpStatus.OK)
     @GetMapping
-    ResponseEntity<Page<T>> getPage(Pageable pageable);
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER','ROLE_MODERATOR')")
+    ResponseEntity<AbstractResponseDTO<T>> getPage(Pageable pageable);
 
-    @Operation(summary = "Получить постранично с сортировкой по полю")
+    @Operation(summary = "Поиск по фильтрам", security = @SecurityRequirement(name = "bearerAuth"))
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/sort")
-    ResponseEntity<Page<T>> getPageAndSort(@RequestParam int page, @RequestParam int size, @RequestParam String sort);
+    @PostMapping("filter")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER','ROLE_MODERATOR')")
+    ResponseEntity<AbstractResponseDTO<T>> searchFilter(@RequestBody SearchRequest request);
 
-    @Operation(summary = "Получить по id")
+    @Operation(summary = "Получить по id", security = @SecurityRequirement(name = "bearerAuth"))
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("{id}")
-    ResponseEntity<?> getOne(@PathVariable Long id);
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER','ROLE_MODERATOR')")
+    ResponseEntity<T> getOne(@PathVariable Long id);
 
-    @Operation(summary = "Обновить данные")
+    @Operation(summary = "Обновить данные", security = @SecurityRequirement(name = "bearerAuth"))
     @ResponseStatus(HttpStatus.OK)
     @PatchMapping
-    ResponseEntity<?> update(@RequestBody T update);
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER','ROLE_MODERATOR')")
+    ResponseEntity<T> update(@RequestBody T update);
 
-    @Operation(summary = "Создать сущность")
+    @Operation(summary = "Создать сущность", security = @SecurityRequirement(name = "bearerAuth"))
     @ResponseStatus(HttpStatus.OK)
     @PostMapping
-    ResponseEntity<CreateResponseDTO> create(@RequestBody T create);
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER','ROLE_MODERATOR')")
+    ResponseEntity<T> create(@RequestBody T create);
 
-    @Operation(summary = "Удалить сущность по id")
+    @Operation(summary = "Удалить сущность по id", security = @SecurityRequirement(name = "bearerAuth"))
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER','ROLE_MODERATOR')")
     void delete(@PathVariable Long id);
 }
