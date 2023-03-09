@@ -1,133 +1,83 @@
 package com.argroupcrm.crm.service.cian;
 
-import com.argroupcrm.crm.controller.advice.DeleteException;
-import com.argroupcrm.crm.controller.advice.FindException;
 import com.argroupcrm.crm.controller.advice.SaveException;
-import com.argroupcrm.crm.controller.advice.UpdateException;
-import com.argroupcrm.crm.dto.cian.BuildingCianEntityDto;
-import com.argroupcrm.crm.generic.crud.dto.CreateResponseDTO;
+import com.argroupcrm.crm.generic.crud.service.AbstractServiceImpl;
 import com.argroupcrm.crm.model.auth.UserEntity;
 import com.argroupcrm.crm.model.cian.BuildingCianEntity;
 import com.argroupcrm.crm.repository.cian.BuildingCianRepository;
 import com.argroupcrm.crm.service.auth.UserService;
 import com.argroupcrm.crm.util.XmlCreator;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.OptimisticLockingFailureException;
+import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionSystemException;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.PersistenceException;
 
 @Service
 @Slf4j
-@RequiredArgsConstructor
-public class BCianServiceImpl implements BCianService {
+public class BCianServiceImpl extends AbstractServiceImpl<BuildingCianEntity, BuildingCianRepository> {
     private final BuildingCianRepository buildingCianRepository;
     private final UserService userService;
     private final ModelMapper patchingMapper;
     private final XmlCreator feed;
 
+    public BCianServiceImpl(BuildingCianRepository repository, UserService userService,
+                            ModelMapper patchingMapper, XmlCreator feed) {
+        super(repository);
+        this.buildingCianRepository = repository;
+        this.userService = userService;
+        this.patchingMapper = patchingMapper;
+        this.feed = feed;
+    }
+
     @Override
     @Transactional
-    public ResponseEntity<CreateResponseDTO> save(BuildingCianEntity buildingCianEntityDto) {
+    public BuildingCianEntity save(BuildingCianEntity entityReq) {
         try {
-            log.info("create building");
-            BuildingCianEntity fromDto = patchingMapper.map(buildingCianEntityDto, BuildingCianEntity.class);
-
-            if (buildingCianRepository.existsById(fromDto.getId())) {
-                return ResponseEntity.status(409).build();
-            }
-            BuildingCianEntity newEntity = buildingCianRepository.save(fromDto);
-
-            if (newEntity.getServiceInformationSaveOnCian()) {
-                if (newEntity.getCategoryBuilding().toLowerCase().contains("buildingrent")) {
+            BuildingCianEntity entity = buildingCianRepository.save(entityReq);
+            if (entity.getServiceInformationSaveOnCian()) {
+                if (entity.getCategoryBuilding().toLowerCase().contains("buildingrent")) {
 
                     UserEntity user = userService.getCurrent();
 
                     Integer countAvailablePremium = user.getPremiumCianCount();
 
-                    feed.CianRentBuildingXML(newEntity, countAvailablePremium);
-                } else if (newEntity.getCategoryBuilding().toLowerCase().contains("buildingsale")) {
+                    feed.CianRentBuildingXML(entity, countAvailablePremium);
+                } else if (entity.getCategoryBuilding().toLowerCase().contains("buildingsale")) {
                     UserEntity user = userService.getCurrent();
 
                     Integer countAvailablePremium = user.getPremiumCianCount();
 
-                    feed.CianSaleBuildingXML(newEntity, countAvailablePremium);
+                    feed.CianSaleBuildingXML(entity, countAvailablePremium);
                 }
             }
-
-            return ResponseEntity.ok(new CreateResponseDTO(newEntity.getId(), "success"));
-        } catch (Exception e) {
-            log.error("create error ", e);
+            return entity;
+        } catch (IllegalArgumentException e) {
             e.printStackTrace();
-            throw new SaveException("Save Building Cian exception, entity:" + buildingCianEntityDto);
-        }
-    }
-
-    @Override
-    @Transactional
-    public BuildingCianEntity update(BuildingCianEntityDto entity) {
-        try {
-            log.info("update building");
-            BuildingCianEntity fromDto = patchingMapper.map(entity, BuildingCianEntity.class);
-            BuildingCianEntity entityFromBd = buildingCianRepository.findById(fromDto.getId()).orElseThrow();
-            patchingMapper.map(fromDto, entityFromBd);
-            if (fromDto.getServiceInformationSaveOnCian()) {
-                if (fromDto.getCategoryBuilding().toLowerCase().contains("buildingrent")) {
-
-                    UserEntity user = userService.getCurrent();
-
-                    Integer countAvailablePremium = user.getPremiumCianCount();
-
-                    feed.CianRentBuildingXML(fromDto, countAvailablePremium);
-                } else if (fromDto.getCategoryBuilding().toLowerCase().contains("buildingsale")) {
-                    UserEntity user = userService.getCurrent();
-
-                    Integer countAvailablePremium = user.getPremiumCianCount();
-
-                    feed.CianSaleBuildingXML(fromDto, countAvailablePremium);
-                }
-            }
-            return buildingCianRepository.saveAndFlush(fromDto);
-        } catch (Exception e) {
-            log.error("update error ", e);
+            throw new IllegalArgumentException();
+        } catch (OptimisticLockingFailureException e) {
             e.printStackTrace();
-            throw new UpdateException("Update Building Cian Exception, entity:" + entity);
-        }
-    }
-
-    @Override
-    @Transactional
-    public void delete(Long id) {
-        try {
-            log.info("delete building");
-            buildingCianRepository.deleteById(id);
-        } catch (Exception e) {
-            log.error("delete error ", e);
+            throw new OptimisticLockingFailureException("OptimisticLockingFailureException exception on save: " + entityReq);
+        } catch (DataIntegrityViolationException e) {
             e.printStackTrace();
-            throw new DeleteException("Delete Building Cian exception, id:" + id);
-        }
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public BuildingCianEntity findById(Long id) {
-        log.info("find building by id");
-        return buildingCianRepository.findById(id).orElseThrow(() -> new FindException("Find Building Cian exception, id:" + id));
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public Page<BuildingCianEntity> findAll(Pageable pageable) {
-        try {
-            log.info("find building pageable");
-            return buildingCianRepository.findAll(pageable);
-        } catch (Exception e) {
-            log.info("findall error", e);
+            throw new DataIntegrityViolationException("DataIntegrityViolationException exception on save: " + entityReq);
+        } catch (TransactionSystemException e) {
             e.printStackTrace();
-            throw new FindException("Find Building Cian exception");
+            throw new TransactionSystemException("TransactionSystemException exception on save: " + entityReq);
+        } catch (JpaSystemException e) {
+            e.printStackTrace();
+            throw new JpaSystemException(e);
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+            throw new PersistenceException("PersistenceException exception on save: " + entityReq);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new SaveException("Can't save entity: " + entityReq);
         }
     }
 }
