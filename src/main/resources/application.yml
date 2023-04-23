@@ -1,0 +1,54 @@
+server:
+  port: 8080
+
+# Application Global Config
+spring:
+  application:
+    name: crm-business-logic
+  flyway:
+    baselineOnMigrate: true
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  jpa:
+    database: POSTGRESQL
+    show-sql: false
+
+# Logs
+logging:
+  level:
+    ru:
+      cg: DEBUG
+    org:
+      springframework:
+        web:
+          client:
+            RestTemplate: DEBUG
+        security: DEBUG
+  pattern:
+    dateformat: dd-MM-yyyy HH:mm:ss
+  logback:
+    rollingpolicy:
+      max-file-size: 50MB
+      max-history: 183
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: jdbc:postgresql://localhost:5433/argroupcrm
+    username: admin
+    password: admin
+    driver-class-name: org.postgresql.Driver
+
+---
+# Profile for local tests
+spring:
+  config:
+    activate:
+      on-profile: test
+  datasource:
+    url: jdbc:postgresql://localhost:5666/test_database
+    username: udp
+    password: udp
