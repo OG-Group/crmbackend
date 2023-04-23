@@ -1,6 +1,6 @@
-package com.example.crm.model;
+package com.bl.crm.model;
 
-import com.example.crm.generic.model.AbstractEntity;
+import com.bl.crm.generic.model.AbstractEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

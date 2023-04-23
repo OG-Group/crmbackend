@@ -1,7 +1,7 @@
-package com.example.crm.repository;
+package com.bl.crm.repository;
 
-import com.example.crm.generic.repository.AbstractRepository;
-import com.example.crm.model.ExampleEntity;
+import com.bl.crm.generic.repository.AbstractRepository;
+import com.bl.crm.model.ExampleEntity;
 import org.springframework.stereotype.Repository;
 
 @Repository

@@ -1,7 +1,7 @@
-package com.example.crm.web.advice;
+package com.bl.crm.web.advice;
 
-import com.example.crm.web.advice.exception.*;
-import com.example.crm.web.dto.ErrorMessageDTO;
+import com.bl.crm.web.advice.exception.*;
+import com.bl.crm.web.dto.ErrorMessageDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

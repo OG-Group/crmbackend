@@ -1,11 +1,11 @@
-package com.example.crm.generic.service;
+package com.bl.crm.generic.service;
 
-import com.example.crm.generic.dto.SearchRequestDTO;
-import com.example.crm.generic.model.AbstractEntity;
-import com.example.crm.generic.repository.AbstractRepository;
-import com.example.crm.generic.repository.SearchSpecification;
-import com.example.crm.web.advice.exception.*;
-import com.example.crm.web.dto.ResponseDTO;
+import com.bl.crm.generic.model.AbstractEntity;
+import com.bl.crm.generic.repository.AbstractRepository;
+import com.bl.crm.generic.repository.SearchSpecification;
+import com.bl.crm.web.advice.exception.*;
+import com.bl.crm.web.dto.ResponseDTO;
+import com.bl.crm.generic.dto.SearchRequestDTO;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

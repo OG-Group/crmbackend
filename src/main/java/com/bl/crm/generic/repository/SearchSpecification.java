@@ -1,9 +1,9 @@
-package com.example.crm.generic.repository;
+package com.bl.crm.generic.repository;
 
-import com.example.crm.generic.dto.FilterRequestDTO;
-import com.example.crm.generic.dto.SearchRequestDTO;
-import com.example.crm.generic.dto.SortRequestDTO;
-import com.example.crm.generic.model.AbstractEntity;
+import com.bl.crm.generic.dto.FilterRequestDTO;
+import com.bl.crm.generic.dto.SearchRequestDTO;
+import com.bl.crm.generic.dto.SortRequestDTO;
+import com.bl.crm.generic.model.AbstractEntity;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;

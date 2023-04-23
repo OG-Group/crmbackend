@@ -1,6 +1,6 @@
-package com.example.crm.generic.dto.enums;
+package com.bl.crm.generic.dto.enums;
 
-import com.example.crm.generic.dto.SortRequestDTO;
+import com.bl.crm.generic.dto.SortRequestDTO;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Order;

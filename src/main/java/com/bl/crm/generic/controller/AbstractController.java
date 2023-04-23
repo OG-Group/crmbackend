@@ -1,8 +1,8 @@
-package com.example.crm.generic.controller;
+package com.bl.crm.generic.controller;
 
-import com.example.crm.generic.dto.SearchRequestDTO;
-import com.example.crm.generic.model.AbstractEntity;
-import com.example.crm.web.dto.ResponseDTO;
+import com.bl.crm.web.dto.ResponseDTO;
+import com.bl.crm.generic.dto.SearchRequestDTO;
+import com.bl.crm.generic.model.AbstractEntity;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

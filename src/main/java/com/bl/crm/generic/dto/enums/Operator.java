@@ -1,6 +1,6 @@
-package com.example.crm.generic.dto.enums;
+package com.bl.crm.generic.dto.enums;
 
-import com.example.crm.generic.dto.FilterRequestDTO;
+import com.bl.crm.generic.dto.FilterRequestDTO;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.criteria.*;

@@ -1,4 +1,4 @@
-package com.example.crm.generic.model;
+package com.bl.crm.generic.model;
 
 
 import lombok.AllArgsConstructor;

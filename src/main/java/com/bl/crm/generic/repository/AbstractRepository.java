@@ -1,6 +1,6 @@
-package com.example.crm.generic.repository;
+package com.bl.crm.generic.repository;
 
-import com.example.crm.generic.model.AbstractEntity;
+import com.bl.crm.generic.model.AbstractEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.NoRepositoryBean;

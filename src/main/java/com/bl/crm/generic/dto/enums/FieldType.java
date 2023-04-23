@@ -1,4 +1,4 @@
-package com.example.crm.generic.dto.enums;
+package com.bl.crm.generic.dto.enums;
 
 import lombok.extern.slf4j.Slf4j;
 

@@ -1,4 +1,4 @@
-package com.example.crm.generic.service;
+package com.bl.crm.generic.service;
 
 import lombok.NonNull;
 import org.springframework.data.domain.AuditorAware;

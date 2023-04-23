@@ -1,4 +1,4 @@
-package com.example.crm.web.dto;
+package com.bl.crm.web.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

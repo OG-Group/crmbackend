@@ -1,4 +1,4 @@
-package com.example.crm.config.swagger;
+package com.bl.crm.config.swagger;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

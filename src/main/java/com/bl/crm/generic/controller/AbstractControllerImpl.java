@@ -1,9 +1,9 @@
-package com.example.crm.generic.controller;
+package com.bl.crm.generic.controller;
 
-import com.example.crm.generic.dto.SearchRequestDTO;
-import com.example.crm.generic.model.AbstractEntity;
-import com.example.crm.generic.service.AbstractService;
-import com.example.crm.web.dto.ResponseDTO;
+import com.bl.crm.generic.service.AbstractService;
+import com.bl.crm.web.dto.ResponseDTO;
+import com.bl.crm.generic.dto.SearchRequestDTO;
+import com.bl.crm.generic.model.AbstractEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;

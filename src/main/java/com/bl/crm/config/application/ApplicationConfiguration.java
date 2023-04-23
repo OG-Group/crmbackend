@@ -1,4 +1,4 @@
-package com.example.crm.config.application;
+package com.bl.crm.config.application;
 
 import org.modelmapper.Conditions;
 import org.modelmapper.ModelMapper;

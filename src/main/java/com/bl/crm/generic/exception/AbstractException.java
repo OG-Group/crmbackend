@@ -1,4 +1,4 @@
-package com.example.crm.generic.exception;
+package com.bl.crm.generic.exception;
 
 /**
  * Abstract Exception for Controller Advice

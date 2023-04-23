@@ -8,11 +8,11 @@
         <version>2.7.8</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.example</groupId>
-    <artifactId>spring-generic-crud-pagination-filters</artifactId>
+    <groupId>com.bl</groupId>
+    <artifactId>crm-buisnes-logic</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-generic-crud-pagination-filters</name>
-    <description>spring-generic-crud-pagination-filters</description>
+    <name>crm-buisnes-logic</name>
+    <description>crm-buisnes-logic</description>
     <properties>
         <java.version>17</java.version>
     </properties>

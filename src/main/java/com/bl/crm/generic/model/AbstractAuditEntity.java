@@ -1,4 +1,4 @@
-package com.example.crm.generic.model;//package com.example.pabp_business_logic.generic.crud;
+package com.bl.crm.generic.model;//package com.example.pabp_business_logic.generic.crud;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,7 +1,7 @@
-package com.example.crm.generic.dto;
+package com.bl.crm.generic.dto;
 
-import com.example.crm.generic.dto.enums.FieldType;
-import com.example.crm.generic.dto.enums.Operator;
+import com.bl.crm.generic.dto.enums.FieldType;
+import com.bl.crm.generic.dto.enums.Operator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
